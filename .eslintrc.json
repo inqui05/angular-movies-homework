@@ -12,8 +12,7 @@
         "airbnb-base",
         "airbnb-typescript/base",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "prettier"
+        "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -30,6 +29,13 @@
             "type": "element",
             "prefix": "app",
             "style": "kebab-case"
+          }
+        ],
+        "linebreak-style": ["error", "windows"],
+        "max-len": [
+          "warn",
+          {
+            "code": 120
           }
         ]
       }

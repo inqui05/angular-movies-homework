@@ -1,14 +1,16 @@
-/*tslint: disable*/
-//@ts-nocheck
+/* eslint-disable no-console */
+/* eslint-disable import/no-extraneous-dependencies */
+// @ts-nocheck
 
 const { writeFile, existsSync, mkdirSync } = require('fs');
 const { argv } = require('yargs');
 
 require('dotenv').config();
-const environment = argv.environment;
+
+const { environment } = argv;
 
 function writeFileUsingFS(targetPath, environmentFileContent) {
-  writeFile(targetPath, environmentFileContent, function (err) {
+  writeFile(targetPath, environmentFileContent, (err) => {
     if (err) console.log(err);
     if (environmentFileContent !== '') console.log(`wrote variables to ${targetPath}`);
   });
@@ -28,4 +30,3 @@ const environmentFileContent = `export const environment = {
   }`;
 
 writeFileUsingFS(targetPath, environmentFileContent);
-/*tslint: enable*/

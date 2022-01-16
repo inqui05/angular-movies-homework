@@ -1,14 +1,11 @@
 # Name of workflow
-name: development workflow
+name: production workflow
 
 # When workflow is triggered
 on:
   pull_request:
     branches:
-      - part_1
-      - part_2
-      - part_3
-      - part_4
+      - main
 
 # Jobs to carry out
 jobs:
@@ -34,7 +31,7 @@ jobs:
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_PART1_ID: ${{ secrets.NETLIFY_PART1_ID }}
+          NETLIFY_MAIN_ID: ${{ secrets.NETLIFY_MAIN_ID }}
         with:
           args: deploy --dir=build --prod
-          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_PART1_ID"]'
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_MAIN_ID"]'

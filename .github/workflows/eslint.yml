@@ -1,0 +1,22 @@
+name: ESLint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - part_1
+      - part_2
+      - part_3
+      - part_4
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm run lint

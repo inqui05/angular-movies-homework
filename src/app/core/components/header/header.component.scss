@@ -1,0 +1,58 @@
+$white: #fff;
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 70px;
+  background-color: #333;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1600px;
+  margin: auto;
+}
+
+.logo {
+  color: $white;
+  text-decoration: none;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+}
+
+.option {
+  color: $white;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.language {
+  display: flex;
+  justify-content: flex-start;
+  width: 55px;
+  position: relative;
+  color: $white;
+  background: inherit;
+  font-size: 1.25rem;
+  border: 2px solid $white;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 4px;
+}
+
+.language::after {
+  content: "▼";
+  position: absolute;
+  right: 4px;
+  top: 8px;
+  font-size: 0.9rem;
+  color: $white;
+}
+
+::ng-deep .mat-menu-panel {
+  min-width: 0 !important;
+}

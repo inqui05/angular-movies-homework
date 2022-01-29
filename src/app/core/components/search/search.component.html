@@ -1,0 +1,11 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Movies, person, movies theaters</mat-label>
+    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto" maxlength="50" />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

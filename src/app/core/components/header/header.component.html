@@ -1,0 +1,11 @@
+<div class="header">
+  <div class="header-wrapper">
+    <a href="/#" class="logo">Movies</a>
+    <app-search></app-search>
+    <button class="language" mat-button [matMenuTriggerFor]="menu">{{ language }}</button>
+    <mat-menu class="options" #menu="matMenu">
+      <button class="option" mat-menu-item (click)="changeLanguage($event)">en</button>
+      <button class="option" mat-menu-item (click)="changeLanguage($event)">ru</button>
+    </mat-menu>
+  </div>
+</div>

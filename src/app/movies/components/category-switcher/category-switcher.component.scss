@@ -1,0 +1,11 @@
+$white: #fff;
+$black: #000;
+
+.mat-button-toggle-checked {
+  background-color: $white;
+  color: $black;
+}
+
+::ng-deep.mat-button-toggle-label-content {
+  line-height: 30px !important;
+}

@@ -53,6 +53,6 @@ $white: #fff;
   color: $white;
 }
 
-::ng-deep .mat-menu-panel {
+::ng-deep.mat-menu-panel {
   min-width: 0 !important;
 }

@@ -1,0 +1,30 @@
+$black: #000;
+
+.movies {
+  width: 100vw;
+  background-color: $black;
+  padding: 15px 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 1600px;
+  margin: auto;
+}
+
+.movies-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.card:not(:nth-child(5n)) {
+  margin-right: 87.5px;
+}

@@ -7,7 +7,7 @@
       <div class="about">
         <div class="label ru" *ngIf="false">Название:</div>
         <div class="label en" *ngIf="true">Title:</div>
-        <h2 class="title">Film name</h2>
+        <h1 class="title">Film name</h1>
         <div class="label ru" *ngIf="false">Описание:</div>
         <div class="label en" *ngIf="true">Overview:</div>
         <div class="overview">
@@ -30,8 +30,8 @@
         </div>
         <div class="cast">
           <div class="control">
-            <h3 class="cast-title" *ngIf="false">Популярные актёры</h3>
-            <h3 class="cast-title" *ngIf="true">Top Billed Cast</h3>
+            <h2 class="cast-title" *ngIf="false">Популярные актёры</h2>
+            <h2 class="cast-title" *ngIf="true">Top Billed Cast</h2>
             <button class="show control-button" *ngIf="!isAllList" (click)="showAndHideAllCast()">show all</button>
             <button class="hide control-button" *ngIf="isAllList" (click)="showAndHideAllCast()">hide all</button>
             <button class="show control-button" *ngIf="false" (click)="showAndHideAllCast()">показать всех</button>
@@ -97,8 +97,8 @@
           </div>
         </div>
         <div class="images">
-          <h3 class="images-title" *ngIf="true">Images</h3>
-          <h3 class="images-title" *ngIf="false">Кадры</h3>
+          <h2 class="images-title" *ngIf="true">Images</h2>
+          <h2 class="images-title" *ngIf="false">Кадры</h2>
           <div class="images-wrapper">
             <div class="image">
               <div class="without">
@@ -130,8 +130,8 @@
       </div>
     </section>
     <section class="recommendation">
-      <h3 class="cast-title" *ngIf="false">Рекомендации</h3>
-      <h3 class="cast-title" *ngIf="true">Recommendations</h3>
+      <h2 class="cast-title" *ngIf="false">Рекомендации</h2>
+      <h2 class="cast-title" *ngIf="true">Recommendations</h2>
       <div class="recommendation-wrapper">
         <app-card class="card"></app-card>
         <app-card class="card"></app-card>

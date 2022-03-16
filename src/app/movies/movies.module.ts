@@ -9,11 +9,12 @@ import MoviesComponent from './pages/movies/movies.component';
 import MoviePageComponent from './pages/movie-page/movie-page.component';
 import CoverComponent from './components/cover/cover.component';
 import PhotoComponent from './components/photo/photo.component';
+import ActorPageComponent from './pages/actor-page/actor-page.component';
 
 @NgModule({
   declarations: [MoviesComponent, CategorySwitcherComponent, CardComponent, PaginationComponent,
-    MoviePageComponent, CoverComponent, PhotoComponent],
+    MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent],
   imports: [CommonModule, SharedModule],
-  exports: [MoviesComponent, MoviePageComponent],
+  exports: [MoviesComponent, MoviePageComponent, ActorPageComponent],
 })
 export default class MoviesModule {}

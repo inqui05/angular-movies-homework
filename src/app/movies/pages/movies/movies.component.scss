@@ -25,18 +25,6 @@ $black: #000;
   margin-bottom: 20px;
 }
 
-.card {
-  transition: 0.2s;
-  box-shadow: 0 0 0.2rem white;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.card:hover {
-  transform: translateZ(1.43rem);
-  box-shadow: 0 0.6rem 1rem rgba(255, 255, 255, 0.4);
-}
-
 .card:not(:nth-child(5n)) {
   margin-right: 87.5px;
 }

@@ -28,3 +28,13 @@ $green: #3c3;
 .genre:not(:last-child) {
   margin-right: 10px;
 }
+:host {
+  transition: 0.2s;
+  box-shadow: 0 0 0.2rem white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+:host:hover {
+  transform: translateZ(1.43rem);
+  box-shadow: 0 0.6rem 1rem rgba(255, 255, 255, 0.4);
+}

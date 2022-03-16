@@ -17,6 +17,7 @@ $green: #3c3;
   width: 380px;
   height: 532px;
   margin-right: 25px;
+
 }
 .movie-info {
   display: flex;
@@ -92,7 +93,6 @@ $green: #3c3;
   width: 150px;
   height: 225px;
   background-color: $white;
-
   overflow: hidden;
   margin-bottom: 15px;
 }
@@ -171,16 +171,6 @@ $green: #3c3;
 }
 .recommendation-wrapper {
   margin-top: 30px;
-}
-.card {
-  transition: 0.2s;
-  box-shadow: 0 0 0.2rem white;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-.card:hover {
-  transform: translateZ(1.43rem);
-  box-shadow: 0 0.6rem 1rem rgba(255, 255, 255, 0.4);
 }
 .card:not(:nth-child(5n)) {
   margin-right: 87.5px;

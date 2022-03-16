@@ -1,0 +1,78 @@
+$black: #000;
+$white: #fff;
+$green: #3c3;
+
+.actor {
+  width: 100vw;
+  background-color: $black;
+  padding: 15px 0;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 1600px;
+  margin: auto;
+}
+.actor-info {
+  display: flex;
+}
+.main-photo-wrapper {
+  width: 380px;
+  height: 532px;
+  margin-right: 25px;
+  border-radius: 10px;
+  background-color: $white;
+}
+.about,
+.photos {
+  width: 1195px;
+  color: $white;
+}
+.fullname,
+.subtitle {
+  font-size: 2.5rem;
+  line-height: 2.75rem;
+  margin-bottom: 50px;
+  color: $white;
+}
+.label {
+  margin-bottom: 5px;
+}
+.info {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+.bio {
+  height: 235px;
+  overflow: hidden;
+}
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.photo-wrapper {
+  width: 200px;
+  height: 300px;
+  background-color: $white;
+  border-radius: 10px;
+}
+.photo-wrapper:not(:last-child) {
+  margin-right: 30px;
+}
+.photo-title {
+  font-size: 1.75rem;
+  margin-bottom: 30px;
+  color: $white;
+}
+.subtitle {
+  margin-top: 60px;
+}
+.movies-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.card:not(:nth-child(5n)) {
+  margin-right: 87.5px;
+}

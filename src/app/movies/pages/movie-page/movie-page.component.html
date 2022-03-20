@@ -16,15 +16,21 @@
           illum magnam molestias labore itaque. Deserunt exercitationem explicabo optio odit modi velit tenetur
           voluptatibus sed dolor natus. Velit reiciendis ipsum culpa.
         </div>
-        <div class="label ru" *ngIf="false">Дата выхода в прокат:</div>
-        <div class="label en" *ngIf="true">Release date:</div>
-        <div class="release">{{ date | date: "YYYY-MM-dd" }}</div>
-        <div class="label ru" *ngIf="false">Бюджет:</div>
-        <div class="label en" *ngIf="true">Revenue:</div>
-        <div class="revenue">{{ revenue | currency }}</div>
-        <div class="label ru" *ngIf="false">Продолжительность:</div>
-        <div class="label en" *ngIf="true">Duration:</div>
-        <div class="duration">2:14</div>
+        <div class="label-wrapper">
+          <div class="label ru" *ngIf="false">Дата выхода в прокат:&emsp;</div>
+          <div class="label en" *ngIf="true">Release date:&emsp;</div>
+          <div class="release">{{ date | date: "YYYY-MM-dd" }}</div>
+        </div>
+        <div class="label-wrapper">
+          <div class="label ru" *ngIf="false">Бюджет:&emsp;</div>
+          <div class="label en" *ngIf="true">Revenue:&emsp;</div>
+          <div class="revenue">{{ revenue | currency }}</div>
+        </div>
+        <div class="label-wrapper">
+          <div class="label ru" *ngIf="false">Продолжительность:&emsp;</div>
+          <div class="label en" *ngIf="true">Duration:&emsp;</div>
+          <div class="duration">2:14</div>
+        </div>
         <div class="genre-wrapper">
           <div class="genre" *ngFor="let genre of genres">{{ genre }}</div>
         </div>

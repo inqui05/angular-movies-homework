@@ -31,3 +31,15 @@ $white: #fff;
 ::ng-deep.mat-input-element {
   font-size: 1rem !important;
 }
+
+@media screen  and (min-width: 550px) and (max-width: 939px) {
+  .example-form {
+    width: 55vw;
+  }
+}
+
+@media screen and (max-width: 549px) {
+  .example-form {
+    width: 280px;
+  }
+}

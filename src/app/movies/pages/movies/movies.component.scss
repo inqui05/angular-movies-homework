@@ -23,8 +23,49 @@ $black: #000;
   width: 100%;
   margin-top: 15px;
   margin-bottom: 20px;
+  padding-right: 3px;
 }
 
-.card:not(:nth-child(5n)) {
-  margin-right: 87.5px;
+@media screen and (min-width: 1620px) {
+  .card:not(:nth-child(5n)) {
+    margin-right: 87.5px;
+  }
+}
+
+@media screen and (min-width: 1240px) and (max-width: 1619px) {
+  .wrapper {
+    width: 1200px;
+  }
+
+  .card:not(:nth-child(4n)) {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (min-width: 940px) and (max-width: 1239px) {
+  .wrapper {
+    width: 900px;
+  }
+
+  .card {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 939px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .card {
+    margin-right: 10px;
+  }
+
+  .movies-wrapper {
+    justify-content: center;
+  }
+
+  .switcher {
+    margin-right: 20px;
+  }
 }

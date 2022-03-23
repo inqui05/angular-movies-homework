@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@ngneat/transloco": "^4.0.0",
     "@ngneat/until-destroy": "^9.0.0",
     "editorconfig-checker": "^4.0.2",
     "rxjs": "~7.4.0",

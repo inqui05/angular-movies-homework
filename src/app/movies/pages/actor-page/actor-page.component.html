@@ -6,22 +6,18 @@
       </div>
       <div class="about">
         <h1 class="fullname">Name Surname</h1>
-        <div class="label ru" *ngIf="false">Дата рождения:</div>
-        <div class="label en" *ngIf="true">Birthday:</div>
+        <div class="label en" *transloco="let phrase; read: 'actor'">{{ phrase('birthday')}}:</div>
         <div class="info">{{ date | date: "YYYY-MM-dd" }}</div>
-        <div class="label ru" *ngIf="false">Место рождения:</div>
-        <div class="label en" *ngIf="true">Place of birth:</div>
+        <div class="label en" *transloco="let phrase; read: 'actor'">{{ phrase('place')}}:</div>
         <div class="info">Place of birth</div>
-        <div class="label ru" *ngIf="false">Биография:</div>
-        <div class="label en" *ngIf="true">Biography:</div>
+        <div class="label en" *transloco="let phrase; read: 'actor'">{{ phrase('biography')}}:</div>
         <div class="info bio">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit illum laudantium maxime sunt cum. Rerum
           eligendi adipisci ipsam reiciendis voluptatem ab nemo labore repudiandae quos totam dolorum pariatur quae
           cumque assumenda laborum autem sit laudantium atque deserunt incidunt, ipsum et. Excepturi, error minima
           necessitatibus consequuntur qui veniam deserunt cupiditate vel.
         </div>
-        <h3 class="photo-title" *ngIf="false">Фотографии:</h3>
-        <h3 class="photo-title" *ngIf="true">Photos:</h3>
+        <h3 class="photo-title" *transloco="let phrase; read: 'actor'">{{ phrase('photos')}}:</h3>
         <div class="photos">
           <div class="photo-wrapper">
             <app-photo></app-photo>
@@ -39,8 +35,7 @@
       </div>
     </section>
     <section class="act-in">
-      <h2 class="subtitle" *ngIf="false">Роли в фильмах</h2>
-      <h2 class="subtitle" *ngIf="true">Known by</h2>
+      <h2 class="subtitle" *transloco="let phrase; read: 'actor'">{{ phrase('known')}}</h2>
       <div class="movies-wrapper">
         <app-card class="card"></app-card>
         <app-card class="card"></app-card>

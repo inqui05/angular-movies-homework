@@ -10,11 +10,12 @@ import MoviePageComponent from './pages/movie-page/movie-page.component';
 import CoverComponent from './components/cover/cover.component';
 import PhotoComponent from './components/photo/photo.component';
 import ActorPageComponent from './pages/actor-page/actor-page.component';
+import TranslocoRootModule from '../transloco-root.module';
 
 @NgModule({
   declarations: [MoviesComponent, CategorySwitcherComponent, CardComponent, PaginationComponent,
     MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, TranslocoRootModule],
   exports: [MoviesComponent, MoviePageComponent, ActorPageComponent],
 })
 export default class MoviesModule {}

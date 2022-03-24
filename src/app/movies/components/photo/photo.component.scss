@@ -1,0 +1,22 @@
+$white: #fff;
+
+.cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+}
+
+.without {
+  min-height: 225px;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.without-photo {
+  width: 100%;
+  height: 100%;
+}

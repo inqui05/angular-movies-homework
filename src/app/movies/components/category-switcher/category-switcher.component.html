@@ -1,0 +1,11 @@
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle checked value="Popular" *transloco="let phrase; read: 'switcher'">{{
+    phrase("popular")
+  }}</mat-button-toggle>
+  <mat-button-toggle value="Top rated" *transloco="let phrase; read: 'switcher'">{{
+    phrase("rated")
+  }}</mat-button-toggle>
+  <mat-button-toggle value="Upcoming" *transloco="let phrase; read: 'switcher'">{{
+    phrase("upcoming")
+  }}</mat-button-toggle>
+</mat-button-toggle-group>

@@ -1,0 +1,5 @@
+<button class="language" mat-button [matMenuTriggerFor]="menu">{{ activeLanguage }}</button>
+<mat-menu class="options" #menu="matMenu">
+  <button class="option" mat-menu-item (click)="changeLanguage($event)">en</button>
+  <button class="option" mat-menu-item (click)="changeLanguage($event)">ru</button>
+</mat-menu>

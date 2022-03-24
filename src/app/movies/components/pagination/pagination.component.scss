@@ -1,0 +1,33 @@
+$green: #3c3;
+
+:host ::ng-deep .mat-paginator-container {
+  justify-content: center;
+}
+:host ::ng-deep .mat-paginator-page-size {
+  display: none;
+}
+:host ::ng-deep .mat-paginator {
+  background: inherit;
+}
+.paginator{
+  display: flex;
+  justify-content: center;
+}
+.page {
+  background-color: inherit;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 3px 7px;
+  border-radius: 10px;
+}
+.page:not(:last-child) {
+  margin-right: 3px;
+}
+.page.active {
+  background-color: $green;
+  color: inherit;
+}
+.between {
+  cursor: default;
+}

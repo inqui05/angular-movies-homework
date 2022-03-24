@@ -1,0 +1,408 @@
+$black: #000;
+$white: #fff;
+$green: #3c3;
+
+.movie {
+  width: 100vw;
+  background-color: $black;
+  padding: 15px 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 1600px;
+  margin: auto;
+}
+
+.card-wrapper {
+  width: 380px;
+  height: 532px;
+  margin-right: 25px;
+}
+
+.movie-info {
+  display: flex;
+}
+
+.about {
+  width: 1195px;
+  color: $white;
+}
+
+.label {
+  margin-bottom: 5px;
+}
+
+.title {
+  font-size: 2.5rem;
+  line-height: 2.75rem;
+  margin-bottom: 30px;
+}
+
+.overview,
+.release,
+.revenue,
+.duration,
+.genre-wrapper {
+  margin-bottom: 30px;
+}
+
+.release,
+.overview,
+.revenue,
+.duration {
+  font-size: 1.2rem;
+}
+
+.genre-wrapper {
+  display: flex;
+}
+
+.genre {
+  padding: 3px 6px;
+  background-color: $green;
+  border-radius: 5px;
+}
+
+.genre:not(:last-child) {
+  margin-right: 10px;
+}
+
+.overview {
+  height: 120px;
+  overflow: hidden;
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cast-title,
+.images-title {
+  font-size: 1.75rem;
+  margin-bottom: 0;
+  color: $white;
+  padding-left: 5px;
+}
+
+.images-title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.control-button {
+  background-color: inherit;
+  color: $white;
+  border: 1px solid $white;
+  border-radius: 5px;
+  padding: 3px 6px;
+  cursor: pointer;
+}
+
+.control-button:hover {
+  border: 1px solid $green;
+  color: $green;
+}
+
+.photo-wrapper {
+  width: 150px;
+  height: 225px;
+  background-color: $white;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.actor {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 150px;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: 0.2s;
+  box-shadow: 0 0 0.2rem white;
+  overflow: hidden;
+  border-radius: 10px;
+  color: $white;
+  text-decoration: none;
+  margin: 20px;
+  margin-left: 1px;
+  margin-right: 45px;
+}
+
+.actors {
+  width: 100%;
+  height: 330px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.actor:hover {
+  transform: translateZ(1.43rem);
+  box-shadow: 0 0.5rem 0.7rem rgba(255, 255, 255, 0.4);
+}
+
+.character {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.name {
+  margin-bottom: 5px;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 275px;
+  height: 155px;
+  border-radius: 10px;
+  background-color: $white;
+  margin-bottom: 25px;
+}
+
+.without {
+  width: 60%;
+  height: 60%;
+}
+
+.without-image {
+  width: 100%;
+  height: 100%;
+}
+.images-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.recommendation-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 30px;
+}
+
+@media screen and (min-width: 1621px) {
+  .card:not(:nth-child(5n)) {
+    margin-right: 87.5px;
+  }
+
+  .image:not(:nth-child(4n)) {
+    margin-right: 25px;
+  }
+}
+
+@media screen and (min-width: 1240px) and (max-width: 1620px) {
+  .wrapper {
+    width: 1200px;
+  }
+
+  .card-wrapper {
+    width: 300px;
+    height: 440px;
+  }
+
+  .about {
+    width: 875px;
+  }
+
+  .overview,
+  .release,
+  .revenue,
+  .duration,
+  .genre-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .actor {
+    margin-right: 20px;
+  }
+
+  .image:not(:nth-child(4n)) {
+    margin-right: 0;
+  }
+
+  .image:not(:nth-child(3n)) {
+    margin-right: 15px;
+  }
+
+  .card:not(:nth-child(4n)) {
+    margin-right: 63px;
+  }
+
+  .image {
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (min-width: 940px) and (max-width: 1239px) {
+  .wrapper {
+    width: 900px;
+  }
+
+  .card-wrapper {
+    width: 300px;
+    height: 440px;
+  }
+
+  .about {
+    width: 575px;
+  }
+
+  .title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    margin-bottom: 15px;
+  }
+  .overview,
+  .release,
+  .revenue,
+  .duration,
+  .genre-wrapper {
+    margin-bottom: 15px;
+  }
+
+  .actor {
+    margin-right: 0;
+  }
+
+  .actor:not(:nth-child(3n)) {
+    margin-right: 60px;
+  }
+
+  .image {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .image:nth-child(odd) {
+    margin-right: 20px;
+  }
+
+  .recommendation-wrapper {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 939px) {
+  .wrapper {
+    width: 95%;
+  }
+
+  .card-wrapper {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .about {
+    width: 95%;
+  }
+
+  .movie-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .overview,
+  .release,
+  .revenue,
+  .duration,
+  .genre-wrapper {
+    margin-bottom: 10px;
+  }
+
+  .release,
+  .overview,
+  .revenue,
+  .duration {
+    font-size: 1rem;
+  }
+
+  .actor {
+    margin: 10px;
+    margin-left: 1px;
+    margin-right: 10px;
+  }
+
+  .photo-wrapper {
+    margin-bottom: 10px;
+  }
+
+  .actors {
+    height: 300px;
+  }
+
+  .image {
+    justify-content: center;
+    width: 240px;
+    height: 135px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+  }
+
+  .images-wrapper {
+    justify-content: center;
+  }
+
+  .card {
+    margin-right: 10px;
+  }
+
+  .recommendation-wrapper {
+    justify-content: center;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 549px) {
+  .wrapper {
+    width: 90%;
+  }
+
+  .card-wrapper {
+    width: 250px;
+    height: 350px;
+  }
+
+  .actor {
+    width: 130px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .actors {
+    height: 270px;
+    justify-content: space-between;
+  }
+
+  .photo-wrapper {
+    width: 130px;
+    height: 195px;
+  }
+
+  .card {
+    margin-right: 0;
+  }
+
+  .title {
+    font-size: 1.75rem;
+    line-height: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .cast-title,
+  .images-title {
+    font-size: 1.5rem;
+  }
+}
+
+.all {
+  height: auto;
+}

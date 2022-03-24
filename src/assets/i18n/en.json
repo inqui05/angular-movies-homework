@@ -1,0 +1,26 @@
+{
+  "movie": {
+    "title": "Title",
+    "overview": "Overview",
+    "release": "Release date",
+    "revenue": "Revenue",
+    "duration": "Duration",
+    "cast": "Top Billed Cast",
+    "hide": "hide all",
+    "show": "show all",
+    "images": "Images",
+    "recommendations": "Recommendations"
+  },
+  "actor": {
+    "birthday": "Birthday",
+    "place": "Place of birth",
+    "biography": "Biography",
+    "photos": "Photos",
+    "known": "Known by"
+  },
+  "switcher": {
+    "popular": "Popular",
+    "rated": "Top rated",
+    "upcoming": "Upcoming"
+  }
+}

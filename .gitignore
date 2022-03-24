@@ -49,3 +49,7 @@ Thumbs.db
 environment.prod.ts
 environment.ts
 environments/
+
+# dotenv environment variables file
+.env
+.env.test

@@ -5,7 +5,6 @@ name: development workflow
 on:
   pull_request:
     branches:
-      - part_1
       - part_2
       - part_3
       - part_4

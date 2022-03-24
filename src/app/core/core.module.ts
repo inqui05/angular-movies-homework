@@ -5,9 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import SharedModule from '../shared/shared.module';
 import HeaderComponent from './components/header/header.component';
 import SearchComponent from './components/search/search.component';
+import LanguageSwitcherComponent from './components/language-switcher/language-switcher.component';
 
 @NgModule({
-  declarations: [HeaderComponent, SearchComponent],
+  declarations: [HeaderComponent, SearchComponent, LanguageSwitcherComponent],
   imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [HeaderComponent],
 })

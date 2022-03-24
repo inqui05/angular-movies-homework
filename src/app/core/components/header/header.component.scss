@@ -24,38 +24,10 @@ $white: #fff;
   text-transform: uppercase;
 }
 
-.option {
+.switch {
   color: $white;
   font-size: 1rem;
   text-transform: uppercase;
-}
-
-.language {
-  display: flex;
-  justify-content: flex-start;
-  width: 55px;
-  position: relative;
-  color: $white;
-  background: inherit;
-  font-size: 1.25rem;
-  border: 2px solid $white;
-  border-radius: 3px;
-  cursor: pointer;
-  text-transform: uppercase;
-  padding: 4px;
-}
-
-.language::after {
-  content: "▼";
-  position: absolute;
-  right: 4px;
-  top: 6px;
-  font-size: 0.9rem;
-  color: $white;
-}
-
-::ng-deep.mat-menu-panel {
-  min-width: 0 !important;
 }
 
 @media screen and (min-width: 1240px) and (max-width: 1620px) {
@@ -77,33 +49,7 @@ $white: #fff;
 
   .logo {
     margin-left: 10px;
-  }
-
-  .logo {
     font-size: 1.5rem;
-  }
-
-  .language {
-    width: 40px;
-    font-size: 1.15rem;
-    padding: 2px;
-    margin-right: 20px;
-  }
-
-  .language::after {
-    width: 20px;
-    left: 25px;
-    top: 2px;
-  }
-
-  .mat-button {
-    min-width: 48px;
-    line-height: 32px;
-  }
-
-  ::ng-deep.mat-button-focus-overlay,
-  ::ng-deep.mat-ripple {
-    width: 40px;
   }
 }
 
@@ -125,10 +71,6 @@ $white: #fff;
 @media screen and (max-width: 460px) {
   .search {
     order: 2;
-    margin-bottom: 10px;
-  }
-
-  .language {
     margin-bottom: 10px;
   }
 }

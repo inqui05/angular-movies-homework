@@ -1,0 +1,16 @@
+export interface IPerson {
+  'adult': boolean,
+  'also_known_as':[],
+  'biography':string,
+  'birthday': Date,
+  'deathday': Date | null,
+  'gender': number,
+  'homepage': string | null,
+  'id': number,
+  'imdb_id': string,
+  'known_for_department': string,
+  'name': string,
+  'place_of_birth': string,
+  'popularity': number,
+  'profile_path': string,
+}

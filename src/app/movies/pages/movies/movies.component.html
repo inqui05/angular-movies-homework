@@ -1,28 +1,9 @@
 <main class="movies">
   <div class="wrapper">
-    <app-category-switcher class="switcher"></app-category-switcher>
-    <div class="movies-wrapper">
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
-      <app-card class="card"></app-card>
+    <app-category-switcher class="switcher" (categoryEvent)="currentCategory($event)"></app-category-switcher>
+    <div class="movies-wrapper" *ngIf="movies$ | async as movies">
+      <app-card class="card" *ngFor="let movie of movies.results" [cardData]="movie"></app-card>
     </div>
   </div>
-  <app-pagination [setPagination] = "setPagination"></app-pagination>
+  <app-pagination [setPagination]="setPagination" (goToPage)="currentPage($event)"></app-pagination>
 </main>

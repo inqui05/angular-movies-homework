@@ -1,14 +1,13 @@
 $white: #fff;
-$green: #3c3;
 
 .card {
-  width: 250px;
+  width: 270px;
   text-decoration: none;
 }
 
 .card-wrapper {
-  width: 250px;
-  height: 350px;
+  width: 270px;
+  height: 380px;
   margin-bottom: 15px;
 }
 
@@ -19,16 +18,28 @@ $green: #3c3;
 }
 
 .title {
+  width: 250px;
+  height: 72px;
   padding: 0 10px;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
+  line-height: 1.55rem;
+  text-align: center;
 }
 .genres {
+  width: 250px;
+  display: flex;
+  flex-wrap: wrap;
   padding: 0 10px;
+  color: #777777;
 }
 .genre:not(:last-child) {
-  margin-right: 10px;
+  margin-right: 5px;
+}
+.genre {
+  margin-bottom: 0;
 }
 :host {
+  height: 518px;
   transition: 0.2s;
   box-shadow: 0 0 0.2rem white;
   border-radius: 10px;

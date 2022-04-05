@@ -18,13 +18,13 @@ export default class ViewerRatingDirective implements OnInit {
   @HostBinding('style.backgroundColor') bottomBorderColor = AvailableColor.Red;
 
   ngOnInit(): void {
-    if (+this.rating >= 7) {
+    if (this.rating >= 7) {
       this.bottomBorderColor = AvailableColor.Green;
-    } else if (+this.rating >= 6) {
+    } else if (this.rating >= 6) {
       this.bottomBorderColor = AvailableColor.Orange;
-    } else if (+this.rating >= 4.5) {
+    } else if (this.rating >= 4.5) {
       this.bottomBorderColor = AvailableColor.Gray;
-    } else if (+this.rating < 4.5) {
+    } else if (this.rating < 4.5) {
       this.bottomBorderColor = AvailableColor.Red;
     }
   }

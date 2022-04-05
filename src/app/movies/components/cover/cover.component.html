@@ -1,4 +1,6 @@
 <div class="cover">
-  <div class="without"><img src="../../../../assets/movie.svg" alt="no movie cover" class="without-image" /></div>
-  <div class="rating">{{rating}}</div>
+  <div class="image-wrapper"><img src='https://image.tmdb.org/t/p/w300/{{cardData.poster_path}}' alt="movie's cover" class="image" *ngIf="cardData; else cover"/></div>
+  <div class="rating" [appViewerRating]="cardData.vote_average" *ngIf="cardData">{{cardData.vote_average}}</div>
 </div>
+
+<ng-template #cover><div class="without"><img src="../../../../assets/movie.svg" alt="no movie cover" class="without-image" /></div></ng-template>

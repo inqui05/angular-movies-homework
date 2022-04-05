@@ -1,9 +1,9 @@
 <div class="paginator-wrapper" *ngIf="lastPage > 1">
   <div class="paginator">
-    <button class="first page" *ngIf="currentPage > 3">1</button>
+    <button class="first page" *ngIf="currentPage > 3" (click)="setPage(1)">1</button>
     <button class="between page" *ngIf="currentPage > 4 && lastPage > MAX_BUTTONS_COUNT + 1">...</button>
     <button class="page" *ngFor="let item of pages" [ngClass]="{ active: currentPage === item }" (click)="setPage(item)">{{ item }}</button>
     <button class="between page" *ngIf="currentPage + 3 < lastPage && lastPage > MAX_BUTTONS_COUNT + 1">...</button>
-    <button class="last page" *ngIf="currentPage + 2 < lastPage">{{ lastPage }}</button>
+    <button class="last page" *ngIf="currentPage + 2 < lastPage" (click)="setPage(lastPage)">{{ lastPage }}</button>
   </div>
 </div>

@@ -26,7 +26,7 @@ const isProduction = environment === 'prod';
 const targetPath = isProduction ? './src/environments/environment.prod.ts' : './src/environments/environment.ts';
 const environmentFileContent = `export const environment = {
     production: ${isProduction},
-    moviesDatabaseKey: '${process.env.moviesDatabaseKey}',
+    MOVIESDBKEY: '${process.env.MOVIESDBKEY}',
   }`;
 
 writeFileUsingFS(targetPath, environmentFileContent);

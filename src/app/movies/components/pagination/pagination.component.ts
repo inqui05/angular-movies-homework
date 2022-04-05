@@ -2,7 +2,7 @@ import {
   Component, EventEmitter, Input, OnInit, Output,
 } from '@angular/core';
 
-import { IPagination } from '../../models/pagination.model';
+const MAX_PAGE_COUNT_FROM_API = 500;
 
 @Component({
   selector: 'app-pagination',
@@ -10,23 +10,23 @@ import { IPagination } from '../../models/pagination.model';
   styleUrls: ['./pagination.component.scss'],
 })
 export default class PaginationComponent implements OnInit {
+  @Output() goToPage = new EventEmitter<string>();
+
   public currentPage = 1;
 
-  public lastPage = 0;
+  public lastPage = 1;
 
   public pages: number[] = [];
 
   public MAX_BUTTONS_COUNT = 5;
 
-  @Input() set setPagination(pagination: IPagination) {
-    if (pagination) {
-      this.lastPage = Math.ceil(pagination.itemsCount / pagination.pageSize);
+  @Input() set setPagination(pages: number) {
+    if (pages) {
+      this.lastPage = pages <= MAX_PAGE_COUNT_FROM_API ? pages : MAX_PAGE_COUNT_FROM_API;
       this.currentPage = 1;
       this.addStartPagesToPagination();
     }
   }
-
-  @Output() goToPage = new EventEmitter<number>();
 
   ngOnInit() {
     this.addStartPagesToPagination();
@@ -39,7 +39,7 @@ export default class PaginationComponent implements OnInit {
 
     this.currentPage = pageNumber;
     this.fillCurrentPagesToPagination(pageNumber);
-    this.goToPage.emit(pageNumber);
+    this.goToPage.emit(pageNumber.toString());
   }
 
   private addStartPagesToPagination(): void {

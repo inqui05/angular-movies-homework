@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -7,5 +7,11 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./category-switcher.component.scss'],
 })
 export default class CategorySwitcherComponent {
-  fontStyleControl = new FormControl();
+  categoryControl = new FormControl();
+
+  @Output() categoryEvent = new EventEmitter<string>();
+
+  addNewCategory(value: string) {
+    this.categoryEvent.emit(value);
+  }
 }

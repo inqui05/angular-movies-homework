@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import LanguageService from 'src/app/shared/services/language.service';
+
+const LANGUAGE_BY_DEFAULT = 'en';
 
 @Component({
   selector: 'app-language-switcher',
@@ -7,11 +10,11 @@ import { TranslocoService } from '@ngneat/transloco';
   styleUrls: ['./language-switcher.component.scss'],
 })
 export default class LanguageSwitcherComponent implements OnInit {
-  public activeLanguage = 'en';
+  public activeLanguage = LANGUAGE_BY_DEFAULT;
 
   public availableLangs: string[] | { id: string; label: string }[] = [];
 
-  constructor(private transloco: TranslocoService) {}
+  constructor(private transloco: TranslocoService, private service: LanguageService) {}
 
   ngOnInit() {
     this.activeLanguage = this.transloco.getActiveLang();
@@ -23,6 +26,7 @@ export default class LanguageSwitcherComponent implements OnInit {
       const { target } = event;
       this.activeLanguage = (target as HTMLButtonElement).innerText.toLowerCase();
       this.transloco.setActiveLang(this.activeLanguage);
+      this.service.$language.next(this.activeLanguage);
     }
   }
 }

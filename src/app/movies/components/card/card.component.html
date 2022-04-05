@@ -1,11 +1,9 @@
-<a href="#" class="card">
+<a href="#" class="card" *ngIf="cardData">
   <div class="card-wrapper">
-    <app-cover></app-cover>
+    <app-cover [cardData]="cardData"></app-cover>
   </div>
-  <p class="title">Movie Title</p>
+  <p class="title">{{cardData.title}}</p>
   <div class="genres">
-    <p class="genre">Genre-1</p>
-    <p class="genre">Genre-2</p>
-    <p class="genre">Genre-3</p>
+    <p class="genre" *ngFor="let genre of genres">{{genre}}</p>
   </div>
 </a>

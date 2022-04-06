@@ -1,125 +1,63 @@
 <main class="movie">
   <div class="wrapper">
     <section class="movie-info">
-      <div class="card-wrapper">
-        <app-cover></app-cover>
+      <div class="card-wrapper" *ngIf="movieInfo$ | async as info">
+        <app-cover [cardData]="info"></app-cover>
       </div>
       <div class="about">
-        <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase('title')}}:</div>
-        <h1 class="title">Film name</h1>
-        <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase('overview')}}:</div>
-        <div class="overview">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil rem libero fuga consectetur delectus quasi ad
-          maiores, aliquid nam cupiditate doloremque necessitatibus obcaecati dolores quo odio dolorum porro quibusdam
-          illum magnam molestias labore itaque. Deserunt exercitationem explicabo optio odit modi velit tenetur
-          voluptatibus sed dolor natus. Velit reiciendis ipsum culpa.
-        </div>
-        <div class="label-wrapper">
-          <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase('release')}}:&emsp;</div>
-          <div class="release">{{ date | date: "YYYY-MM-dd" }}</div>
-        </div>
-        <div class="label-wrapper">
-          <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase('revenue')}}:&emsp;</div>
-          <div class="revenue">{{ revenue | currency }}</div>
-        </div>
-        <div class="label-wrapper">
-          <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase('duration')}}:&emsp;</div>
-          <div class="duration">2:14</div>
-        </div>
-        <div class="genre-wrapper">
-          <div class="genre" *ngFor="let genre of genres">{{ genre }}</div>
+        <div class="about-wrapper" *ngIf="movieInfo$ | async as info">
+          <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase("title") }}:</div>
+          <h1 class="title">{{ info.title }}</h1>
+          <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase("overview") }}:</div>
+          <div class="overview">{{ info.overview }}</div>
+          <div class="label-wrapper">
+            <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase("release") }}:&emsp;</div>
+            <div class="release">{{ info.release_date | date: "YYYY-MM-dd" }}</div>
+          </div>
+          <div class="label-wrapper">
+            <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase("revenue") }}:&emsp;</div>
+            <div class="revenue">{{ info.revenue | currency }}</div>
+          </div>
+          <div class="label-wrapper">
+            <div class="label en" *transloco="let phrase; read: 'movie'">{{ phrase("duration") }}:&emsp;</div>
+            <div class="duration">{{ info.runtime | moviesDuration }}</div>
+          </div>
+          <div class="genre-wrapper">
+            <div class="genre" *ngFor="let genre of info.genres">{{ genre.name }}</div>
+          </div>
         </div>
         <div class="cast">
           <div class="control">
-            <h2 class="cast-title" *transloco="let phrase; read: 'movie'">{{ phrase('cast')}}</h2>
-            <button class="show control-button" *ngIf="!isAllList" (click)="showAndHideAllCast()">{{'movie.show' | transloco}}</button>
-            <button class="hide control-button" *ngIf="isAllList" (click)="showAndHideAllCast()">{{'movie.hide' | transloco}}</button>
+            <h2 class="cast-title" *transloco="let phrase; read: 'movie'">{{ phrase("cast") }}</h2>
+            <button class="show control-button" *ngIf="!isAllList" (click)="showAndHideAllCast()">
+              {{ "movie.show" | transloco }}
+            </button>
+            <button class="hide control-button" *ngIf="isAllList" (click)="showAndHideAllCast()">
+              {{ "movie.hide" | transloco }}
+            </button>
           </div>
-          <div class="actors" [ngClass]="{ all: isAllList }">
-            <a href="#" class="actor">
+          <div class="actors" [ngClass]="{ all: isAllList }" *ngIf="movieActors$ | async as actors">
+            <a href="#" class="actor" *ngFor="let actor of actors.cast">
               <div class="photo-wrapper">
-                <app-photo></app-photo>
+                <app-photo [photo]="actor.profile_path"></app-photo>
               </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
-            </a>
-            <a href="#" class="actor">
-              <div class="photo-wrapper">
-                <app-photo></app-photo>
-              </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
-            </a>
-            <a href="#" class="actor">
-              <div class="photo-wrapper">
-                <app-photo></app-photo>
-              </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
-            </a>
-            <a href="#" class="actor">
-              <div class="photo-wrapper">
-                <app-photo></app-photo>
-              </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
-            </a>
-            <a href="#" class="actor">
-              <div class="photo-wrapper">
-                <app-photo></app-photo>
-              </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
-            </a>
-            <a href="#" class="actor">
-              <div class="photo-wrapper">
-                <app-photo></app-photo>
-              </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
-            </a>
-            <a href="#" class="actor">
-              <div class="photo-wrapper">
-                <app-photo></app-photo>
-              </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
-            </a>
-            <a href="#" class="actor">
-              <div class="photo-wrapper">
-                <app-photo></app-photo>
-              </div>
-              <p class="name">Full Name</p>
-              <p class="character">Character</p>
+              <p class="name">{{ actor.name }}</p>
+              <p class="character">{{ actor.character }}</p>
             </a>
           </div>
         </div>
         <div class="images">
-          <h2 class="images-title" *transloco="let phrase; read: 'movie'">{{ phrase('images')}}</h2>
-          <div class="images-wrapper">
-            <div class="image">
-              <div class="without">
-                <img src="../../../../assets/image.svg" alt="no image" class="without-image" />
-              </div>
-            </div>
-            <div class="image">
-              <div class="without">
-                <img src="../../../../assets/image.svg" alt="no image" class="without-image" />
-              </div>
-            </div>
-            <div class="image">
-              <div class="without">
-                <img src="../../../../assets/image.svg" alt="no image" class="without-image" />
-              </div>
-            </div>
-            <div class="image">
-              <div class="without">
-                <img src="../../../../assets/image.svg" alt="no image" class="without-image" />
-              </div>
-            </div>
-            <div class="image">
-              <div class="without">
-                <img src="../../../../assets/image.svg" alt="no image" class="without-image" />
+          <h2 class="images-title" *transloco="let phrase; read: 'movie'">{{ phrase("images") }}</h2>
+          <div class="images-async" *ngIf="movieImages$ | async as imageBandle">
+            <div class="images-wrapper" *ngIf="imageBandle | removeImages as images">
+              <div class="image" *ngFor="let image of images.backdrops">
+                <div class="without">
+                  <img
+                    src="https://image.tmdb.org/t/p/w300/{{ image.file_path }}"
+                    alt="image of the movie"
+                    class="without-image"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -127,14 +65,9 @@
       </div>
     </section>
     <section class="recommendation">
-      <h2 class="cast-title" *transloco="let phrase; read: 'movie'">{{ phrase('recommendations')}}</h2>
-      <div class="recommendation-wrapper">
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
+      <h2 class="cast-title" *transloco="let phrase; read: 'movie'">{{ phrase("recommendations") }}</h2>
+      <div class="recommendation-wrapper" *ngIf="movieRecommenadions$ | async as recommendations">
+        <app-card class="card" *ngFor="let movie of recommendations.results" [cardData]="movie"></app-card>
       </div>
     </section>
   </div>

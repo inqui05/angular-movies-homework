@@ -13,10 +13,12 @@ import ActorPageComponent from './pages/actor-page/actor-page.component';
 import MoviePageComponent from './pages/movie-page/movie-page.component';
 import MoviesComponent from './pages/movies/movies.component';
 import ViewerRatingDirective from './directives/viewer-rating.directive';
+import MoviesDurationPipe from './pipes/movies-duration.pipe';
+import RemoveImagesPipe from './pipes/remove-images.pipe';
 
 @NgModule({
   declarations: [MoviesComponent, CategorySwitcherComponent, CardComponent, PaginationComponent,
-    MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent, ViewerRatingDirective],
+    MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent, ViewerRatingDirective, MoviesDurationPipe, RemoveImagesPipe],
   imports: [CommonModule, SharedModule, TranslocoRootModule, ReactiveFormsModule],
   exports: [MoviesComponent, MoviePageComponent, ActorPageComponent],
 })

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IMoviesInfo } from 'src/app/shared/models/movies-info.model';
 import IMovie from 'src/app/shared/models/movies.model';
 
 @Component({
@@ -7,5 +8,5 @@ import IMovie from 'src/app/shared/models/movies.model';
   styleUrls: ['./cover.component.scss'],
 })
 export default class CoverComponent {
-  @Input() cardData: IMovie | null = null;
+  @Input() cardData: IMovie | IMoviesInfo | null = null;
 }

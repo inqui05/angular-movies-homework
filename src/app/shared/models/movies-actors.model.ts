@@ -1,5 +1,5 @@
 export interface IMoviesActors {
-  'id': 634649,
+  'id': number,
   'cast': IActor[],
   'crew': ICrew[],
 }

@@ -1,5 +1,15 @@
 <div class="photo">
-  <div class="without">
-    <img src="../../../../assets/avatar.svg" alt="no movie cover" class="without-photo" />
+  <div class="photo-wrapper">
+    <img
+      src="https://image.tmdb.org/t/p/w300/{{ photo }}"
+      alt="actor photo"
+      class="photo-image"
+      *ngIf="photo; else cover"
+    />
   </div>
 </div>
+
+<ng-template #cover>
+  <div class="without">
+    <img src="../../../../assets/avatar.svg" alt="no movie cover" class="without-photo" /></div
+></ng-template>

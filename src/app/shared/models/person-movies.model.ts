@@ -4,7 +4,7 @@ export interface IPersonMovies {
   'id': number
 }
 
-interface ICast {
+export interface ICast {
   'video': boolean,
   'vote_average': number,
   'id': number,

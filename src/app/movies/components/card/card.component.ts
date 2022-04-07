@@ -3,6 +3,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import IMovie from 'src/app/shared/models/movies.model';
+import { ICast } from 'src/app/shared/models/person-movies.model';
 import HttpService from 'src/app/shared/services/http.service';
 
 @Component({
@@ -11,7 +12,7 @@ import HttpService from 'src/app/shared/services/http.service';
   styleUrls: ['./card.component.scss'],
 })
 export default class CardComponent implements OnInit, OnDestroy {
-  @Input() cardData: IMovie | null = null;
+  @Input() cardData: IMovie | ICast | null = null;
 
   public genres: string[] = [];
 

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import MoviesModule from '../../movies.module';
 
 import ActorPageComponent from './actor-page.component';
 
@@ -9,6 +10,7 @@ describe('ActorPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ActorPageComponent],
+      imports: [MoviesModule],
     })
       .compileComponents();
   });

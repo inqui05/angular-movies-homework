@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TranslocoModule } from '@ngneat/transloco';
+import CoreModule from '../../core.module';
 
 import LanguageSwitcherComponent from './language-switcher.component';
 
@@ -9,6 +11,7 @@ describe('LanguageSwitcherComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LanguageSwitcherComponent],
+      imports: [CoreModule, TranslocoModule],
     })
       .compileComponents();
   });

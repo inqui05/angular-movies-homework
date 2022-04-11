@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategorySwitcherComponent } from './category-switcher.component';
+import CategorySwitcherComponent from './category-switcher.component';
 
 describe('CategorySwitcherComponent', () => {
   let component: CategorySwitcherComponent;

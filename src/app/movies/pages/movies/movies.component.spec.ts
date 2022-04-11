@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import MoviesModule from '../../movies.module';
 
 import MoviesComponent from './movies.component';
 
@@ -9,6 +10,7 @@ describe('MoviesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MoviesComponent],
+      imports: [MoviesModule],
     }).compileComponents();
   });
 

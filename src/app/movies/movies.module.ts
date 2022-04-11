@@ -18,7 +18,8 @@ import RemoveImagesPipe from './pipes/remove-images.pipe';
 
 @NgModule({
   declarations: [MoviesComponent, CategorySwitcherComponent, CardComponent, PaginationComponent,
-    MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent, ViewerRatingDirective, MoviesDurationPipe, RemoveImagesPipe],
+    MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent, ViewerRatingDirective,
+    MoviesDurationPipe, RemoveImagesPipe],
   imports: [CommonModule, SharedModule, TranslocoRootModule, ReactiveFormsModule],
   exports: [MoviesComponent, MoviePageComponent, ActorPageComponent],
 })

@@ -5,7 +5,7 @@ import { IMoviesImages } from 'src/app/shared/models/movies-images.model';
   name: 'removeImages',
 })
 export default class RemoveImagesPipe implements PipeTransform {
-  private maxLenght = 9;
+  private maxLenght = 8;
 
   transform(images: IMoviesImages): IMoviesImages {
     if (images.backdrops.length > this.maxLenght) {

@@ -1,42 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-
-export interface User {
-  name: string;
-}
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  debounceTime, distinctUntilChanged, filter, map, Subscription,
+} from 'rxjs';
+import { Subject } from 'rxjs/internal/Subject';
+import SearchPhraseService from 'src/app/shared/services/search-phrase.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export default class SearchComponent implements OnInit {
-  myControl = new FormControl();
+export default class SearchComponent implements OnInit, OnDestroy {
+  public keyUp = new Subject<KeyboardEvent>();
 
-  options: User[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }];
+  private subscription = new Subscription();
 
-  filteredOptions: Observable<User[]> | null = null;
+  constructor(private search: SearchPhraseService) {}
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => (typeof value === 'string' ? value : value.name)),
-      map((name) => (name ? this.filter(name) : this.options.slice())),
-    );
+    this.subscription = this.keyUp
+      .pipe(
+        map((event): string => (<HTMLInputElement>event.target).value),
+        distinctUntilChanged(),
+        filter((value: string): boolean => value.length >= 4),
+        debounceTime(800),
+      ).subscribe((phrase) => this.search.$searchPhrase.next(phrase));
   }
 
-  // TODO: do it when the service will get data from API
-  // eslint-disable-next-line class-methods-use-this
-  displayFn(user: User): string {
-    return user && user.name ? user.name : '';
-  }
-
-  private filter(name: string): User[] {
-    const filterValue = name.toLowerCase();
-
-    return this.options.filter((option) => option.name.toLowerCase().includes(filterValue));
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

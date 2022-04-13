@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-/* eslint-disable */
+// eslint-disable-next-line no-alert
 import { environment } from '../../../environments/environment';
-/* eslint-enable */
 import IData from '../models/data-for-response.model';
 import { IGenres } from '../models/genres.model';
 import { IMoviesActors } from '../models/movies-actors.model';
@@ -66,5 +65,10 @@ export default class HttpService {
 
   getGenres(language: string): Observable<IGenres> {
     return this.http.get<IGenres>(`${URL}genre/movie/list?api_key=${environment.MOVIESDBKEY}&language=${language}`);
+  }
+
+  searchMovie(data: IData): Observable<ISearchResponse> {
+    return this.http.get<ISearchResponse>(`${URL}search/movie?api_key=${environment.MOVIESDBKEY}`
+    + `&language=${data.language}&query=${data.category}&page=${data.page}&include_adult=false`);
   }
 }

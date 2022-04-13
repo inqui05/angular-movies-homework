@@ -7,7 +7,7 @@ const LANGUAGE_BY_DEFAULT = 'en';
   providedIn: 'root',
 })
 export default class LanguageService {
-  $language: BehaviorSubject<string> = new BehaviorSubject<string>(LANGUAGE_BY_DEFAULT);
+  $language: BehaviorSubject<string>;
 
   constructor() {
     this.$language = new BehaviorSubject<string>(LANGUAGE_BY_DEFAULT);

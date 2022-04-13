@@ -43,19 +43,23 @@ export default class PaginationComponent implements OnInit {
   }
 
   private addStartPagesToPagination(): void {
-    if (this.lastPage > this.MAX_BUTTONS_COUNT) {
-      const pages: number[] = [];
+    const pages: number[] = [];
 
+    if (this.lastPage > this.MAX_BUTTONS_COUNT) {
       for (let i = 1; i <= this.MAX_BUTTONS_COUNT; i += 1) {
         pages.push(i);
       }
-
-      this.pages = pages;
     } else if (this.pages.length === 0 && this.lastPage < this.MAX_BUTTONS_COUNT) {
       for (let i = 1; i <= this.lastPage; i += 1) {
         this.pages.push(i);
       }
+    } else if (this.lastPage < this.MAX_BUTTONS_COUNT) {
+      for (let i = 1; i <= this.lastPage; i += 1) {
+        pages.push(i);
+      }
     }
+
+    this.pages = pages;
   }
 
   private fillCurrentPagesToPagination(pageNumber: number):void {

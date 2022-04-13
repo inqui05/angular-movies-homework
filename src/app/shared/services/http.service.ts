@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-// eslint-disable-next-line no-alert
+/* eslint-disable */
 import { environment } from '../../../environments/environment';
+/* eslint-enable */
 import IData from '../models/data-for-response.model';
 import { IGenres } from '../models/genres.model';
 import { IMoviesActors } from '../models/movies-actors.model';

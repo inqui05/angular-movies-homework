@@ -8,14 +8,9 @@ import { ISearchResponse } from 'src/app/shared/models/search-response.model';
 import HttpService from 'src/app/shared/services/http.service';
 import LanguageService from 'src/app/shared/services/language.service';
 import SearchPhraseService from 'src/app/shared/services/search-phrase.service';
+import { INITIAL_PARAMS } from 'src/app/shared/vars/vars';
 
 const PAGE_NUMBER_BY_DEFAULT = 1;
-
-const DEFAULT_SETTING: IData = {
-  category: 'popular',
-  language: 'en',
-  page: PAGE_NUMBER_BY_DEFAULT,
-};
 
 @Component({
   selector: 'app-movies',
@@ -23,7 +18,7 @@ const DEFAULT_SETTING: IData = {
   styleUrls: ['./movies.component.scss'],
 })
 export default class MoviesComponent implements OnInit, OnDestroy {
-  private dataForRequest: IData = DEFAULT_SETTING;
+  private dataForRequest: IData = INITIAL_PARAMS();
 
   private subscription: Subscription[] = [];
 

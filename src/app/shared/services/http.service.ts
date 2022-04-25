@@ -15,61 +15,62 @@ import { IPersonImages } from '../models/person-images.modes';
 import { IPersonMovies } from '../models/person-movies.model';
 import { IPerson } from '../models/person.model';
 import { ISearchResponse } from '../models/search-response.model';
-
-const URL = 'https://api.themoviedb.org/3/';
+import { API_URL } from '../vars/vars';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class HttpService {
+  private URL = API_URL();
+
   constructor(private http: HttpClient) { }
 
   getMovies(data: IData): Observable<ISearchResponse> {
-    return this.http.get<ISearchResponse>(
-      `${URL}movie/${data.category}?api_key=${environment.MOVIESDBKEY}&language=${data.language}&page=${data.page}`,
-    );
+    return this.http.get<ISearchResponse>(`${this.URL}movie/${data.category}`
+      + `?api_key=${environment.MOVIESDBKEY}&language=${data.language}&page=${data.page}`);
   }
 
   getMoviesInfo(id: number, language: string): Observable<IMoviesInfo> {
-    return this.http.get<IMoviesInfo>(`${URL}movie/${id}?api_key=${environment.MOVIESDBKEY}&language=${language}`);
+    return this.http.get<IMoviesInfo>(`${this.URL}movie/${id}?api_key=${environment.MOVIESDBKEY}&language=${language}`);
   }
 
   getMoviesImages(id: number): Observable<IMoviesImages> {
-    return this.http.get<IMoviesImages>(`${URL}movie/${id}/images?api_key=${environment.MOVIESDBKEY}`);
+    return this.http.get<IMoviesImages>(`${this.URL}movie/${id}/images?api_key=${environment.MOVIESDBKEY}`);
   }
 
   getMoviesActors(id: number, language: string): Observable<IMoviesActors> {
     return this.http.get<IMoviesActors>(
-      `${URL}movie/${id}/credits?api_key=${environment.MOVIESDBKEY}&language=${language}`,
+      `${this.URL}movie/${id}/credits?api_key=${environment.MOVIESDBKEY}&language=${language}`,
     );
   }
 
   getMoviesRecommendations(id: number, language: string): Observable<IMoviesRecommendations> {
     return this.http.get<IMoviesRecommendations>(
-      `${URL}movie/${id}/recommendations?api_key=${environment.MOVIESDBKEY}&language=${language}`,
+      `${this.URL}movie/${id}/recommendations?api_key=${environment.MOVIESDBKEY}&language=${language}`,
     );
   }
 
   getPersonInfo(id: number, language: string): Observable<IPerson> {
-    return this.http.get<IPerson>(`${URL}person/${id}?api_key=${environment.MOVIESDBKEY}&language=${language}`);
+    return this.http.get<IPerson>(`${this.URL}person/${id}?api_key=${environment.MOVIESDBKEY}&language=${language}`);
   }
 
   getPersonImages(id: number): Observable<IPersonImages> {
-    return this.http.get<IPersonImages>(`${URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`);
+    return this.http.get<IPersonImages>(`${this.URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`);
   }
 
   getPersonMovies(id: number, language: string): Observable<IPersonMovies> {
     return this.http.get<IPersonMovies>(
-      `${URL}person/${id}/movie_credits?api_key=${environment.MOVIESDBKEY}&language=${language}`,
+      `${this.URL}person/${id}/movie_credits?api_key=${environment.MOVIESDBKEY}&language=${language}`,
     );
   }
 
   getGenres(language: string): Observable<IGenres> {
-    return this.http.get<IGenres>(`${URL}genre/movie/list?api_key=${environment.MOVIESDBKEY}&language=${language}`);
+    return this.http.get<IGenres>(`${this.URL}genre/movie/list`
+      + `?api_key=${environment.MOVIESDBKEY}&language=${language}`);
   }
 
   searchMovie(data: IData): Observable<ISearchResponse> {
-    return this.http.get<ISearchResponse>(`${URL}search/movie?api_key=${environment.MOVIESDBKEY}`
-    + `&language=${data.language}&query=${data.category}&page=${data.page}&include_adult=false`);
+    return this.http.get<ISearchResponse>(`${this.URL}search/movie?api_key=${environment.MOVIESDBKEY}`
+      + `&language=${data.language}&query=${data.category}&page=${data.page}&include_adult=false`);
   }
 }

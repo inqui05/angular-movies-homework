@@ -3,8 +3,8 @@ import {
 } from '@angular/core';
 
 export enum AvailableColor {
-  Green = '#3c3',
-  Orange = '#ed760e',
+  Green = 'rgb(51, 204, 51)',
+  Orange = 'rgb(237, 118, 14)',
   Gray = 'gray',
   Red = 'red',
 }

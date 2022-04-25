@@ -13,4 +13,16 @@ describe('SearchPhraseService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('SearchPhraseService should emit the new search phrase to the stream', () => {
+    let result: string = '';
+    const newPhrase = 'matrix';
+
+    service.$searchPhrase.subscribe((phrase) => {
+      result = phrase;
+    });
+    service.$searchPhrase.next(newPhrase);
+
+    expect(result).toBe(newPhrase);
+  });
 });

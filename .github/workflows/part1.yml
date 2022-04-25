@@ -34,7 +34,8 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_PART1_ID: ${{ secrets.NETLIFY_PART1_ID }}
-          MOVIESDBKEY: ${{ secrets.MOVIESDBKEY }}
         with:
           args: deploy --dir=build --prod
-          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_PART1_ID", "MOVIESDBKEY"]'
+          github_token: ${{ secrets.MOVIESDBKEY }}
+          publish_dir: dist/movies
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_PART1_ID"]'

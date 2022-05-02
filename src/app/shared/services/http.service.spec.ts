@@ -263,7 +263,39 @@ describe('HttpService', () => {
     const data: IPersonMovies = {} as any;
 
     service.getPersonMovies(id, params.language).subscribe((response) => {
-      expect(response).toBe(data);
+      expect(response).toEqual(data);
+    });
+
+    const req = httpTestingController.expectOne(`${URL}person/${id}/movie_credits?api_key=${environment.MOVIESDBKEY}`
+      + `&language=${params.language}`);
+
+    expect(req.request.method).toBe('GET');
+    req.flush(data);
+  });
+
+  it('should return 10 movies if there are more and throw the movies with one category away', () => {
+    const hasLowRating = { vote_average: 3.8, genre_ids: [18, 28] } as any;
+    const hasOneCategory = { vote_average: 9.6, genre_ids: [18] } as any;
+    const data: IPersonMovies = {} as any;
+    data.cast = [
+      hasLowRating,
+      { vote_average: 4.8, genre_ids: [18, 28] } as any,
+      { vote_average: 5.8, genre_ids: [18, 28] } as any,
+      { vote_average: 6.8, genre_ids: [18, 28] } as any,
+      { vote_average: 7.8, genre_ids: [18, 28] } as any,
+      { vote_average: 8.8, genre_ids: [18, 28] } as any,
+      { vote_average: 9.8, genre_ids: [18, 28] } as any,
+      hasOneCategory,
+      { vote_average: 6.6, genre_ids: [18, 28] } as any,
+      { vote_average: 7.6, genre_ids: [18, 28] } as any,
+      { vote_average: 5.2, genre_ids: [18, 28] } as any,
+      { vote_average: 6.2, genre_ids: [18, 28] } as any,
+    ];
+
+    service.getPersonMovies(id, params.language).subscribe((response) => {
+      expect(response.cast.length).toBe(10);
+      expect(response.cast).not.toContain(hasLowRating);
+      expect(response.cast).not.toContain(hasOneCategory);
     });
 
     const req = httpTestingController.expectOne(`${URL}person/${id}/movie_credits?api_key=${environment.MOVIESDBKEY}`

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 /* eslint-disable */
 import { environment } from '../../../environments/environment';
 /* eslint-enable */
@@ -16,6 +16,9 @@ import { IPersonMovies } from '../models/person-movies.model';
 import { IPerson } from '../models/person.model';
 import { ISearchResponse } from '../models/search-response.model';
 import { API_URL } from '../vars/vars';
+
+const MAX_COUNT_OF_MOVIES_ON_PAGE = 10;
+const MAX_COUNT_OF_PHOTO_ON_PAGE = 5;
 
 @Injectable({
   providedIn: 'root',
@@ -55,12 +58,36 @@ export default class HttpService {
   }
 
   getPersonImages(id: number): Observable<IPersonImages> {
-    return this.http.get<IPersonImages>(`${this.URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`);
+    return this.http.get<IPersonImages>(`${this.URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`).pipe(
+      map((data: IPersonImages) => {
+        const newData = { ...data };
+        newData.profiles = data.profiles.slice(0, MAX_COUNT_OF_PHOTO_ON_PAGE);
+        return newData;
+      }),
+    );
   }
 
+  /* I throw the movies with one category away because the stars of popular films are mentioned
+  in many documentaries about how the movie was shot and they have a high rating. As a result the most
+  of movies aren't exactly what the user expected to see */
   getPersonMovies(id: number, language: string): Observable<IPersonMovies> {
     return this.http.get<IPersonMovies>(
       `${this.URL}person/${id}/movie_credits?api_key=${environment.MOVIESDBKEY}&language=${language}`,
+    ).pipe(
+      map((data: IPersonMovies) => {
+        if (Object.keys(data).length !== 0) data.cast.sort((a, b) => b.vote_average - a.vote_average);
+        return data;
+      }),
+      map((data: IPersonMovies) => {
+        const changedData = { ...data };
+        if (Object.keys(changedData).length !== 0 && Object.keys(changedData.cast).length !== 0) {
+          changedData.cast = data.cast.filter((element) => element.genre_ids.length > 1);
+        }
+        if (Object.keys(changedData.cast).length !== 0) {
+          changedData.cast = changedData.cast.slice(0, MAX_COUNT_OF_MOVIES_ON_PAGE);
+        }
+        return changedData;
+      }),
     );
   }
 

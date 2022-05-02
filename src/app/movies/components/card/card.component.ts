@@ -6,6 +6,8 @@ import IMovie from 'src/app/shared/models/movies.model';
 import { ICast } from 'src/app/shared/models/person-movies.model';
 import HttpService from 'src/app/shared/services/http.service';
 
+const defaultLang = 'en';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -16,13 +18,12 @@ export default class CardComponent implements OnInit, OnDestroy {
 
   public genres: string[] = [];
 
-  private subscription: Subscription[] = [];
+  public subscription: Subscription[] = [];
 
   constructor(private service: HttpService) {}
 
   ngOnInit() {
-    const lang = 'en';
-    this.service.getGenres(lang).subscribe((data) => {
+    this.service.getGenres(defaultLang).subscribe((data) => {
       if (this.cardData) {
         this.cardData.genre_ids.forEach((id) => {
           const element = data.genres.find((item) => item.id === id);

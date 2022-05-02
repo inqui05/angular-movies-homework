@@ -1,4 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture, TestBed,
+} from '@angular/core/testing';
+import LanguageService from 'src/app/shared/services/language.service';
 import MoviesModule from '../../movies.module';
 
 import ActorPageComponent from './actor-page.component';
@@ -11,8 +14,14 @@ describe('ActorPageComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ActorPageComponent],
       imports: [MoviesModule],
+      providers: [LanguageService],
     })
       .compileComponents();
+
+    fixture = TestBed.createComponent(ActorPageComponent);
+    component = fixture.componentInstance;
+
+    fixture.detectChanges();
   });
 
   beforeEach(() => {

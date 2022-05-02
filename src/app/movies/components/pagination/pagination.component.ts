@@ -42,7 +42,7 @@ export default class PaginationComponent implements OnInit {
     this.goToPage.emit(pageNumber.toString());
   }
 
-  private addStartPagesToPagination(): void {
+  public addStartPagesToPagination(): void {
     const pages: number[] = [];
 
     if (this.lastPage > this.MAX_BUTTONS_COUNT) {
@@ -51,7 +51,7 @@ export default class PaginationComponent implements OnInit {
       }
     } else if (this.pages.length === 0 && this.lastPage < this.MAX_BUTTONS_COUNT) {
       for (let i = 1; i <= this.lastPage; i += 1) {
-        this.pages.push(i);
+        pages.push(i);
       }
     } else if (this.lastPage < this.MAX_BUTTONS_COUNT) {
       for (let i = 1; i <= this.lastPage; i += 1) {
@@ -62,7 +62,7 @@ export default class PaginationComponent implements OnInit {
     this.pages = pages;
   }
 
-  private fillCurrentPagesToPagination(pageNumber: number):void {
+  public fillCurrentPagesToPagination(pageNumber: number):void {
     if (this.lastPage > this.MAX_BUTTONS_COUNT) {
       const newPages: number[] = [];
       if (pageNumber < 4) {

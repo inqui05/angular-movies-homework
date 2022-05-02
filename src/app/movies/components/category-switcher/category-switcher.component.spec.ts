@@ -21,4 +21,14 @@ describe('CategorySwitcherComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should send a new category to movies component', () => {
+    const newCategory = 'upcoming';
+
+    component.categoryEvent.subscribe((category) => {
+      expect(category).toBe(newCategory);
+    });
+
+    component.addNewCategory(newCategory);
+  });
 });

@@ -1,18 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { map, Observable, Subscription } from 'rxjs';
+import { IMoviesActors } from 'src/app/shared/models/movies-actors.model';
+import { IMoviesImages } from 'src/app/shared/models/movies-images.model';
+import { IMoviesInfo } from 'src/app/shared/models/movies-info.model';
+import { IMoviesRecommendations } from 'src/app/shared/models/movies-recommendations.model';
+import HttpService from 'src/app/shared/services/http.service';
+import LanguageService from 'src/app/shared/services/language.service';
 
+const MAX_COUNT_OF_MOVIES_ON_PAGE = 5;
 @Component({
   selector: 'app-movie-page',
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.scss'],
 })
-export default class MoviePageComponent {
+export default class MoviePageComponent implements OnInit, OnDestroy {
   public isAllList = false;
 
-  public date = new Date();
+  public movieInfo$: Observable<IMoviesInfo> = new Observable<IMoviesInfo>();
 
-  public revenue = 10000000;
+  public movieActors$: Observable<IMoviesActors> = new Observable<IMoviesActors>();
 
-  public genres: string[] = ['Genre1', 'genre2', 'genre3', 'genre4'];
+  public movieImages$: Observable<IMoviesImages> = new Observable<IMoviesImages>();
+
+  public movieRecommenadions$: Observable<IMoviesRecommendations> = new Observable<IMoviesRecommendations>();
+
+  private subscription: Subscription = new Subscription();
+
+  constructor(private http: HttpService, private langService: LanguageService) { }
+
+  ngOnInit() {
+    this.subscription = this.langService.$language.subscribe((lang) => {
+      this.movieInfo$ = this.http.getMoviesInfo(634649, lang);
+      this.movieActors$ = this.http.getMoviesActors(634649, lang);
+      this.movieImages$ = this.http.getMoviesImages(634649);
+      this.movieRecommenadions$ = this.http.getMoviesRecommendations(634649, lang).pipe(
+        map((data: IMoviesRecommendations) => {
+          const newData = { ...data };
+          newData.results = data.results.slice(0, MAX_COUNT_OF_MOVIES_ON_PAGE);
+          return newData;
+        }),
+      );
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   public showAndHideAllCast(): void {
     this.isAllList = !this.isAllList;

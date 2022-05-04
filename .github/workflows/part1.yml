@@ -36,4 +36,6 @@ jobs:
           NETLIFY_PART1_ID: ${{ secrets.NETLIFY_PART1_ID }}
         with:
           args: deploy --dir=build --prod
+          github_token: ${{ secrets.MOVIESDBKEY }}
+          publish_dir: dist/movies
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_PART1_ID"]'

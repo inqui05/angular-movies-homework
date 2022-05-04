@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategorySwitcherComponent } from './category-switcher.component';
+import CategorySwitcherComponent from './category-switcher.component';
 
 describe('CategorySwitcherComponent', () => {
   let component: CategorySwitcherComponent;
@@ -20,5 +20,15 @@ describe('CategorySwitcherComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should send a new category to movies component', () => {
+    const newCategory = 'upcoming';
+
+    component.categoryEvent.subscribe((category) => {
+      expect(category).toBe(newCategory);
+    });
+
+    component.addNewCategory(newCategory);
   });
 });

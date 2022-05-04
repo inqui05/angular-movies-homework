@@ -135,7 +135,7 @@ $green: #3c3;
 
 .actors {
   width: 100%;
-  height: 330px;
+  height: 355px;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
@@ -167,8 +167,8 @@ $green: #3c3;
 }
 
 .without {
-  width: 60%;
-  height: 60%;
+  width: 100%;
+  height: 100%;
 }
 
 .without-image {
@@ -191,7 +191,7 @@ $green: #3c3;
 
 @media screen and (min-width: 1621px) {
   .card:not(:nth-child(5n)) {
-    margin-right: 87.5px;
+    margin-right: 60px;
   }
 
   .image:not(:nth-child(4n)) {
@@ -234,7 +234,7 @@ $green: #3c3;
   }
 
   .card:not(:nth-child(4n)) {
-    margin-right: 63px;
+    margin-right: 40px;
   }
 
   .image {

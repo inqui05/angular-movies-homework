@@ -32,6 +32,7 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_MAIN_ID: ${{ secrets.NETLIFY_MAIN_ID }}
+          MOVIESDBKEY: ${{ secrets.MOVIESDBKEY }}
         with:
           args: deploy --dir=build --prod
-          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_MAIN_ID"]'
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_MAIN_ID", "MOVIESDBKEY"]'

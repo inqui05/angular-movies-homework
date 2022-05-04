@@ -2,7 +2,7 @@ import {
   Component, EventEmitter, Input, OnInit, Output,
 } from '@angular/core';
 
-import { IPagination } from '../../models/pagination.model';
+const MAX_PAGE_COUNT_FROM_API = 500;
 
 @Component({
   selector: 'app-pagination',
@@ -10,23 +10,23 @@ import { IPagination } from '../../models/pagination.model';
   styleUrls: ['./pagination.component.scss'],
 })
 export default class PaginationComponent implements OnInit {
+  @Output() goToPage = new EventEmitter<string>();
+
   public currentPage = 1;
 
-  public lastPage = 0;
+  public lastPage = 1;
 
   public pages: number[] = [];
 
   public MAX_BUTTONS_COUNT = 5;
 
-  @Input() set setPagination(pagination: IPagination) {
-    if (pagination) {
-      this.lastPage = Math.ceil(pagination.itemsCount / pagination.pageSize);
+  @Input() set setPagination(pages: number) {
+    if (pages) {
+      this.lastPage = pages <= MAX_PAGE_COUNT_FROM_API ? pages : MAX_PAGE_COUNT_FROM_API;
       this.currentPage = 1;
       this.addStartPagesToPagination();
     }
   }
-
-  @Output() goToPage = new EventEmitter<number>();
 
   ngOnInit() {
     this.addStartPagesToPagination();
@@ -39,26 +39,30 @@ export default class PaginationComponent implements OnInit {
 
     this.currentPage = pageNumber;
     this.fillCurrentPagesToPagination(pageNumber);
-    this.goToPage.emit(pageNumber);
+    this.goToPage.emit(pageNumber.toString());
   }
 
-  private addStartPagesToPagination(): void {
-    if (this.lastPage > this.MAX_BUTTONS_COUNT) {
-      const pages: number[] = [];
+  public addStartPagesToPagination(): void {
+    const pages: number[] = [];
 
+    if (this.lastPage > this.MAX_BUTTONS_COUNT) {
       for (let i = 1; i <= this.MAX_BUTTONS_COUNT; i += 1) {
         pages.push(i);
       }
-
-      this.pages = pages;
     } else if (this.pages.length === 0 && this.lastPage < this.MAX_BUTTONS_COUNT) {
       for (let i = 1; i <= this.lastPage; i += 1) {
-        this.pages.push(i);
+        pages.push(i);
+      }
+    } else if (this.lastPage < this.MAX_BUTTONS_COUNT) {
+      for (let i = 1; i <= this.lastPage; i += 1) {
+        pages.push(i);
       }
     }
+
+    this.pages = pages;
   }
 
-  private fillCurrentPagesToPagination(pageNumber: number):void {
+  public fillCurrentPagesToPagination(pageNumber: number):void {
     if (this.lastPage > this.MAX_BUTTONS_COUNT) {
       const newPages: number[] = [];
       if (pageNumber < 4) {

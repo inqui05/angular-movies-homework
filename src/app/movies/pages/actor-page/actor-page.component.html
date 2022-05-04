@@ -1,48 +1,29 @@
 <main class="actor">
   <div class="wrapper">
     <section class="actor-info">
-      <div class="main-photo-wrapper">
-        <app-photo></app-photo>
+      <div class="main-photo-wrapper" *ngIf="actorInfo$ | async as actor">
+        <app-photo [photo]="actor.profile_path"></app-photo>
       </div>
-      <div class="about">
-        <h1 class="fullname">Name Surname</h1>
+      <div class="about" *ngIf="actorInfo$ | async as actor">
+        <h1 class="fullname">{{ actor.name }}</h1>
         <div class="label en" *transloco="let phrase; read: 'actor'">{{ phrase('birthday')}}:</div>
-        <div class="info">{{ date | date: "YYYY-MM-dd" }}</div>
+        <div class="info">{{ actor.birthday | date: "YYYY-MM-dd" }}</div>
         <div class="label en" *transloco="let phrase; read: 'actor'">{{ phrase('place')}}:</div>
-        <div class="info">Place of birth</div>
+        <div class="info">{{ actor.place_of_birth }}</div>
         <div class="label en" *transloco="let phrase; read: 'actor'">{{ phrase('biography')}}:</div>
-        <div class="info bio">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit illum laudantium maxime sunt cum. Rerum
-          eligendi adipisci ipsam reiciendis voluptatem ab nemo labore repudiandae quos totam dolorum pariatur quae
-          cumque assumenda laborum autem sit laudantium atque deserunt incidunt, ipsum et. Excepturi, error minima
-          necessitatibus consequuntur qui veniam deserunt cupiditate vel.
-        </div>
+        <div class="info bio">{{ actor.biography }}</div>
         <h3 class="photo-title" *transloco="let phrase; read: 'actor'">{{ phrase('photos')}}:</h3>
-        <div class="photos">
-          <div class="photo-wrapper">
-            <app-photo></app-photo>
-          </div>
-          <div class="photo-wrapper">
-            <app-photo></app-photo>
-          </div>
-          <div class="photo-wrapper">
-            <app-photo></app-photo>
-          </div>
-          <div class="photo-wrapper">
-            <app-photo></app-photo>
+        <div class="photos" *ngIf="actorImages$ | async as images">
+          <div class="photo-wrapper"  *ngFor="let image of images.profiles" >
+            <app-photo [photo]="image.file_path"></app-photo>
           </div>
         </div>
       </div>
     </section>
     <section class="act-in">
       <h2 class="subtitle" *transloco="let phrase; read: 'actor'">{{ phrase('known')}}</h2>
-      <div class="movies-wrapper">
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
-        <app-card class="card"></app-card>
+      <div class="movies-wrapper" *ngIf="actorMovies$ | async as movies">
+        <app-card class="card" *ngFor="let movie of movies.cast" [cardData]="movie"></app-card>
       </div>
     </section>
   </div>

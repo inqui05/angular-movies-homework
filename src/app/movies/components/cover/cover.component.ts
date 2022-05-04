@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { IMoviesInfo } from 'src/app/shared/models/movies-info.model';
+import IMovie from 'src/app/shared/models/movies.model';
+import { ICast } from 'src/app/shared/models/person-movies.model';
 
 @Component({
   selector: 'app-cover',
@@ -6,6 +9,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cover.component.scss'],
 })
 export default class CoverComponent {
-  // TODO: change mock number after API requests
-  @Input() rating = 7.5;
+  @Input() cardData: IMovie | IMoviesInfo | ICast | null = null;
 }

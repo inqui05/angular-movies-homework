@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { RouterModule } from '@angular/router';
 import SharedModule from '../shared/shared.module';
 import TranslocoRootModule from '../transloco-root.module';
 import CardComponent from './components/card/card.component';
@@ -20,7 +21,7 @@ import RemoveImagesPipe from './pipes/remove-images.pipe';
   declarations: [MoviesComponent, CategorySwitcherComponent, CardComponent, PaginationComponent,
     MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent, ViewerRatingDirective,
     MoviesDurationPipe, RemoveImagesPipe],
-  imports: [CommonModule, SharedModule, TranslocoRootModule, ReactiveFormsModule],
+  imports: [CommonModule, SharedModule, TranslocoRootModule, ReactiveFormsModule, RouterModule],
   exports: [MoviesComponent, MoviePageComponent, ActorPageComponent],
 })
 export default class MoviesModule {}

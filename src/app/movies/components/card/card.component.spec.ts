@@ -2,6 +2,7 @@ import {
   ComponentFixture, fakeAsync, TestBed, tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { delay, of, Subscription } from 'rxjs';
 import IMovie from 'src/app/shared/models/movies.model';
 import HttpService from 'src/app/shared/services/http.service';
@@ -17,7 +18,7 @@ describe('CardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CardComponent],
-      imports: [MoviesModule],
+      imports: [MoviesModule, RouterTestingModule],
     }).compileComponents();
     fixture = TestBed.createComponent(CardComponent);
     service = TestBed.inject(HttpService);

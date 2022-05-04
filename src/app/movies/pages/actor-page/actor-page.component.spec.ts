@@ -1,6 +1,7 @@
 import {
   ComponentFixture, TestBed,
 } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import LanguageService from 'src/app/shared/services/language.service';
 import MoviesModule from '../../movies.module';
 
@@ -13,7 +14,7 @@ describe('ActorPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ActorPageComponent],
-      imports: [MoviesModule],
+      imports: [MoviesModule, RouterTestingModule],
       providers: [LanguageService],
     })
       .compileComponents();

@@ -37,7 +37,7 @@
             </button>
           </div>
           <div class="actors" [ngClass]="{ all: isAllList }" *ngIf="movieActors$ | async as actors">
-            <a href="#" class="actor" *ngFor="let actor of actors.cast">
+            <a [routerLink]="['/person/', actor.id]" class="actor" *ngFor="let actor of actors.cast">
               <div class="photo-wrapper">
                 <app-photo [photo]="actor.profile_path"></app-photo>
               </div>

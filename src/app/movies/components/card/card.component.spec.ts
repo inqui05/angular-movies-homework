@@ -1,3 +1,4 @@
+import { ChangeDetectorRef } from '@angular/core';
 import {
   ComponentFixture, fakeAsync, TestBed, tick,
 } from '@angular/core/testing';
@@ -37,7 +38,7 @@ describe('CardComponent', () => {
     cardInfo.title = title;
     component.cardData = cardInfo;
 
-    fixture.detectChanges();
+    fixture.componentRef.injector.get(ChangeDetectorRef).detectChanges();
 
     const titleElement = fixture.debugElement.query(By.css('.title'));
     expect((titleElement.nativeElement as HTMLElement).textContent).toContain(title);

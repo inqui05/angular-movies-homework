@@ -235,7 +235,7 @@ describe('HttpService', () => {
     const data: IPersonImages = {} as any;
 
     service.getPersonImages(id).subscribe((response) => {
-      expect(response).toBe(data);
+      expect(response).toEqual(data);
     });
 
     const req = httpTestingController.expectOne(`${URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`);

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component, OnDestroy, OnInit,
 } from '@angular/core';
 
@@ -16,6 +17,7 @@ const PAGE_NUMBER_BY_DEFAULT = 1;
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class MoviesComponent implements OnInit, OnDestroy {
   private dataForRequest: IData = INITIAL_PARAMS();

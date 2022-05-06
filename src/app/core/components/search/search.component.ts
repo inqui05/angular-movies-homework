@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, OnDestroy, OnInit,
+} from '@angular/core';
 import {
   debounceTime, distinctUntilChanged, filter, map, Subscription,
 } from 'rxjs';
@@ -9,6 +11,7 @@ import SearchPhraseService from 'src/app/shared/services/search-phrase.service';
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SearchComponent implements OnInit, OnDestroy {
   public keyUp = new Subject<KeyboardEvent>();

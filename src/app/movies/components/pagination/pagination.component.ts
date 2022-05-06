@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component, EventEmitter, Input, OnInit, Output,
 } from '@angular/core';
 
@@ -8,6 +9,7 @@ const MAX_PAGE_COUNT_FROM_API = 500;
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class PaginationComponent implements OnInit {
   @Output() goToPage = new EventEmitter<string>();

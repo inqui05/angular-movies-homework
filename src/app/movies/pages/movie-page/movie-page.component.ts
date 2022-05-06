@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, OnDestroy, OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, Subscription } from 'rxjs';
 import { IMoviesActors } from 'src/app/shared/models/movies-actors.model';
@@ -14,6 +16,7 @@ const MAX_COUNT_OF_MOVIES_ON_PAGE = 5;
   selector: 'app-movie-page',
   templateUrl: './movie-page.component.html',
   styleUrls: ['./movie-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class MoviePageComponent implements OnInit, OnDestroy {
   public isAllList = false;

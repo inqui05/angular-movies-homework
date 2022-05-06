@@ -1,4 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, OnDestroy, OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { IPersonImages } from 'src/app/shared/models/person-images.modes';
@@ -11,6 +13,7 @@ import LanguageService from 'src/app/shared/services/language.service';
   selector: 'app-actor-page',
   templateUrl: './actor-page.component.html',
   styleUrls: ['./actor-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class ActorPageComponent implements OnInit, OnDestroy {
   public actorInfo$: Observable<IPerson> = new Observable<IPerson>();

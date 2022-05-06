@@ -1,4 +1,6 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -12,6 +14,7 @@ const defaultLang = 'en';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CardComponent implements OnInit, OnDestroy {
   @Input() cardData: IMovie | ICast | null = null;
@@ -20,19 +23,20 @@ export default class CardComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription[] = [];
 
-  constructor(private service: HttpService) {}
+  constructor(private service: HttpService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.service.getGenres(defaultLang).subscribe((data) => {
+    this.subscription.push(this.service.getGenres(defaultLang).subscribe((data) => {
       if (this.cardData) {
         this.cardData.genre_ids.forEach((id) => {
           const element = data.genres.find((item) => item.id === id);
           if (element) {
             this.genres.push(element.name);
+            this.cdr.markForCheck();
           }
         });
       }
-    });
+    }));
   }
 
   ngOnDestroy() {

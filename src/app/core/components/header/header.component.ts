@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import LoaderService from 'src/app/shared/services/progress-bar.service';
 
 @Component({
   selector: 'app-header',
@@ -7,5 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class HeaderComponent {
+  defaultColor = 'white';
 
+  constructor(public loader: LoaderService) {}
 }

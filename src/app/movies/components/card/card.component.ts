@@ -32,9 +32,9 @@ export default class CardComponent implements OnInit, OnDestroy {
           const element = data.genres.find((item) => item.id === id);
           if (element) {
             this.genres.push(element.name);
-            this.cdr.markForCheck();
           }
         });
+        this.cdr.markForCheck();
       }
     }));
   }

@@ -6,7 +6,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -17,8 +17,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule,
-    MatPaginatorModule,
     MatButtonModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatMenuModule,
@@ -26,8 +26,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule,
-    MatPaginatorModule,
     MatButtonModule,
+    MatProgressBarModule,
   ],
 })
 export default class MaterialModule {}

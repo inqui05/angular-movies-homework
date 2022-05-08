@@ -1,8 +1,8 @@
 <main class="movie">
   <div class="wrapper">
     <section class="movie-info">
-      <div class="card-wrapper" *ngIf="movieInfo$ | async as info">
-        <app-cover [cardData]="info"></app-cover>
+      <div class="card-wrapper">
+        <app-cover  *ngIf="movieInfo$ | async as info" [cardData]="info"></app-cover>
       </div>
       <div class="about">
         <div class="about-wrapper" *ngIf="movieInfo$ | async as info">

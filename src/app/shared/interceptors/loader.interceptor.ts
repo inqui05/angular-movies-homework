@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import LoaderService from '../services/progress-bar.service';
+import LoaderService from '../services/loader.service';
 
 @Injectable()
 export default class LoaderInterceptor implements HttpInterceptor {

@@ -1,3 +1,6 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import CatchHttpErrorsInterceptor from '../interceptors/catch-http-errors.interceptor';
+import LoaderInterceptor from '../interceptors/loader.interceptor';
 import IData from '../models/data-for-response.model';
 
 const PAGE_NUMBER_BY_DEFAULT = 1;
@@ -10,4 +13,17 @@ const INITIAL_PARAMS = (): IData => ({
 
 const API_URL = (): string => 'https://api.themoviedb.org/3/';
 
-export { INITIAL_PARAMS, API_URL };
+const INTERCEPTORS_PROVIDERS = () => [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,
+    multi: true,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CatchHttpErrorsInterceptor,
+    multi: true,
+  },
+];
+
+export { INITIAL_PARAMS, API_URL, INTERCEPTORS_PROVIDERS };

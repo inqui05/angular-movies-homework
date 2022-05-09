@@ -20,9 +20,9 @@
         </div>
       </div>
     </section>
-    <section class="act-in">
+    <section class="act-in" *ngIf="actorMovies$ | async as movies">
       <h2 class="subtitle" *transloco="let phrase; read: 'actor'">{{ phrase('known')}}</h2>
-      <div class="movies-wrapper" *ngIf="actorMovies$ | async as movies">
+      <div class="movies-wrapper">
         <app-card class="card" *ngFor="let movie of movies.cast" [cardData]="movie"></app-card>
       </div>
     </section>

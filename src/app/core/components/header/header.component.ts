@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import LoaderService from 'src/app/shared/services/progress-bar.service';
+import LoaderService from 'src/app/shared/services/loader.service';
 
 @Component({
   selector: 'app-header',

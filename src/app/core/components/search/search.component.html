@@ -1,6 +1,6 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="searchForm">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Movies, person, movies theaters</mat-label>
-    <input type="text" matInput maxlength="50" (keyup)="keyUp.next($event)"/>
+    <input type="text" matInput maxlength="50" (keyup)="keyUp.next($event)" formControlName="search"/>
   </mat-form-field>
 </form>

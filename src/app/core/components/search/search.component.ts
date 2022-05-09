@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy, Component, OnDestroy, OnInit,
 } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   debounceTime, distinctUntilChanged, filter, map, Subscription,
 } from 'rxjs';
@@ -16,21 +17,31 @@ import SearchPhraseService from 'src/app/shared/services/search-phrase.service';
 export default class SearchComponent implements OnInit, OnDestroy {
   public keyUp = new Subject<KeyboardEvent>();
 
-  private subscription = new Subscription();
+  private subscriptions: Subscription[] = [];
 
-  constructor(private search: SearchPhraseService) {}
+  searchForm: FormGroup;
+
+  constructor(private search: SearchPhraseService, private fb: FormBuilder) {
+    this.searchForm = fb.group({
+      search: '',
+    });
+  }
 
   ngOnInit() {
-    this.subscription = this.keyUp
+    this.subscriptions.push(this.keyUp
       .pipe(
         map((event): string => (<HTMLInputElement>event.target).value),
         distinctUntilChanged(),
         filter((value: string): boolean => value.length >= 4),
         debounceTime(800),
-      ).subscribe((phrase) => this.search.$searchPhrase.next(phrase));
+      ).subscribe((phrase) => this.search.$searchPhrase.next(phrase)));
+
+    this.subscriptions.push(this.search.$searchPhrase.subscribe((phrase) => {
+      if (!phrase) this.searchForm.reset();
+    }));
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

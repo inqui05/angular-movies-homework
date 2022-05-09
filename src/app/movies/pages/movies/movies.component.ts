@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   ChangeDetectionStrategy,
   Component, OnDestroy, OnInit,
 } from '@angular/core';
@@ -34,6 +35,7 @@ export default class MoviesComponent implements OnInit, OnDestroy {
     private service: HttpService,
     private langService: LanguageService,
     private search: SearchPhraseService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -44,14 +46,19 @@ export default class MoviesComponent implements OnInit, OnDestroy {
       this.getNewData();
     }));
     this.subscription.push(this.search.$searchPhrase.subscribe((phrase) => {
-      this.isSearch = true;
-      this.currentCategory(phrase);
+      if (phrase) {
+        this.isSearch = true;
+        this.currentCategory(phrase);
+      }
     }));
   }
 
   public currentCategory(category: string, notSearch?: boolean): void {
     this.dataForRequest.category = category;
-    if (notSearch) this.isSearch = false;
+    if (notSearch) {
+      this.isSearch = false;
+      this.search.$searchPhrase.next('');
+    }
     this.getNewData();
     this.getPagesCount();
   }
@@ -79,6 +86,7 @@ export default class MoviesComponent implements OnInit, OnDestroy {
     } else {
       this.movies$ = this.service.searchMovie(this.dataForRequest);
     }
+    this.cdr.markForCheck();
   }
 
   ngOnDestroy() {

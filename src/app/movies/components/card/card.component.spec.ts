@@ -46,8 +46,8 @@ describe('CardComponent', () => {
 
   it('should unsubscribe', () => {
     component.subscription = [new Subscription(), new Subscription()];
-    component.subscription.forEach((subscripton) => {
-      const unsubscriptionSpy = spyOn(subscripton, 'unsubscribe');
+    component.subscription.forEach((subscription) => {
+      const unsubscriptionSpy = spyOn(subscription, 'unsubscribe');
       component.ngOnDestroy();
       expect(unsubscriptionSpy).toHaveBeenCalled();
     });

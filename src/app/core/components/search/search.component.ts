@@ -17,7 +17,7 @@ import SearchPhraseService from 'src/app/shared/services/search-phrase.service';
 export default class SearchComponent implements OnInit, OnDestroy {
   public keyUp = new Subject<KeyboardEvent>();
 
-  private subscriptions: Subscription[] = [];
+  public subscriptions: Subscription[] = [];
 
   searchForm: FormGroup;
 

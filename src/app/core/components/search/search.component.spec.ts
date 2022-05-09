@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import SharedModule from 'src/app/shared/shared.module';
 
 import SearchComponent from './search.component';
@@ -10,7 +12,7 @@ describe('SearchComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
-      imports: [SharedModule],
+      imports: [SharedModule, FormsModule, ReactiveFormsModule],
     }).compileComponents();
   });
 
@@ -22,5 +24,14 @@ describe('SearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should unsubscribe', () => {
+    component.subscriptions = [new Subscription(), new Subscription()];
+    component.subscriptions.forEach((subscription) => {
+      const unsubscriptionSpy = spyOn(subscription, 'unsubscribe');
+      component.ngOnDestroy();
+      expect(unsubscriptionSpy).toHaveBeenCalled();
+    });
   });
 });

@@ -1,6 +1,6 @@
 <main class="movies">
+  <p class="search-phrase" *ngIf="moviesData?.results?.length === 0">{{ "movie.result" | transloco }}</p>
   <div class="wrapper">
-    <app-category-switcher class="switcher" (categoryEvent)="currentCategory($event)"></app-category-switcher>
     <div class="movies-wrapper" *ngIf="moviesData as movies">
       <app-card class="card" *ngFor="let movie of movies.results" [cardData]="movie"></app-card>
     </div>

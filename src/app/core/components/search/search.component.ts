@@ -2,11 +2,11 @@ import {
   ChangeDetectionStrategy, Component, OnDestroy, OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   debounceTime, distinctUntilChanged, filter, map, Subscription,
 } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
-import SearchPhraseService from 'src/app/shared/services/search-phrase.service';
 
 @Component({
   selector: 'app-search',
@@ -21,7 +21,7 @@ export default class SearchComponent implements OnInit, OnDestroy {
 
   searchForm: FormGroup;
 
-  constructor(private search: SearchPhraseService, private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private route: Router) {
     this.searchForm = fb.group({
       search: '',
     });
@@ -34,11 +34,10 @@ export default class SearchComponent implements OnInit, OnDestroy {
         distinctUntilChanged(),
         filter((value: string): boolean => value.length >= 4),
         debounceTime(800),
-      ).subscribe((phrase) => this.search.$searchPhrase.next(phrase)));
-
-    this.subscriptions.push(this.search.$searchPhrase.subscribe((phrase) => {
-      if (!phrase) this.searchForm.reset();
-    }));
+      ).subscribe((phrase) => {
+        this.route.navigate(['search/', phrase]);
+        this.searchForm.reset();
+      }));
   }
 
   ngOnDestroy() {

@@ -16,11 +16,12 @@ import MoviesComponent from './pages/movies/movies.component';
 import ViewerRatingDirective from './directives/viewer-rating.directive';
 import MoviesDurationPipe from './pipes/movies-duration.pipe';
 import RemoveImagesPipe from './pipes/remove-images.pipe';
+import SearchPageComponent from './pages/search-page/search-page.component';
 
 @NgModule({
   declarations: [MoviesComponent, CategorySwitcherComponent, CardComponent, PaginationComponent,
     MoviePageComponent, CoverComponent, PhotoComponent, ActorPageComponent, ViewerRatingDirective,
-    MoviesDurationPipe, RemoveImagesPipe],
+    MoviesDurationPipe, RemoveImagesPipe, SearchPageComponent],
   imports: [CommonModule, SharedModule, TranslocoRootModule, ReactiveFormsModule, RouterModule],
   exports: [MoviesComponent, MoviePageComponent, ActorPageComponent],
 })

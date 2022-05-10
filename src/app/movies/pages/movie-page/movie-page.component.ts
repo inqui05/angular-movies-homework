@@ -50,11 +50,11 @@ export default class MoviePageComponent implements OnInit, OnDestroy {
     }));
   }
 
-  ngOnDestroy() {
-    this.subscription.forEach((subscription) => subscription.unsubscribe());
-  }
-
   public showAndHideAllCast(): void {
     this.isAllList = !this.isAllList;
+  }
+
+  ngOnDestroy() {
+    this.subscription.forEach((subscription) => subscription.unsubscribe());
   }
 }

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Subscription } from 'rxjs';
 import SharedModule from 'src/app/shared/shared.module';
 
@@ -12,7 +13,7 @@ describe('SearchComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
-      imports: [SharedModule, FormsModule, ReactiveFormsModule],
+      imports: [SharedModule, FormsModule, ReactiveFormsModule, RouterTestingModule],
     }).compileComponents();
   });
 

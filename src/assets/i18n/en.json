@@ -9,7 +9,8 @@
     "hide": "hide all",
     "show": "show all",
     "images": "Images",
-    "recommendations": "Recommendations"
+    "recommendations": "Recommendations",
+    "result": "NO RESULTS FOUND"
   },
   "actor": {
     "birthday": "Birthday",

@@ -27,6 +27,8 @@ export default class PaginationComponent implements OnInit {
       this.lastPage = pages <= MAX_PAGE_COUNT_FROM_API ? pages : MAX_PAGE_COUNT_FROM_API;
       this.currentPage = 1;
       this.addStartPagesToPagination();
+    } else {
+      this.lastPage = 0;
     }
   }
 

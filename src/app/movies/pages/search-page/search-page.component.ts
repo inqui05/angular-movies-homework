@@ -18,7 +18,7 @@ const PAGE_NUMBER_BY_DEFAULT = 1;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class SearchPageComponent implements OnInit, OnDestroy {
-  private dataForRequest: IData = INITIAL_PARAMS();
+  public dataForRequest: IData = INITIAL_PARAMS();
 
   public moviesData: ISearchResponse | null = null;
 

@@ -1,4 +1,6 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -6,12 +8,11 @@ import IMovie from 'src/app/shared/models/movies.model';
 import { ICast } from 'src/app/shared/models/person-movies.model';
 import HttpService from 'src/app/shared/services/http.service';
 
-const defaultLang = 'en';
-
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CardComponent implements OnInit, OnDestroy {
   @Input() cardData: IMovie | ICast | null = null;
@@ -20,19 +21,21 @@ export default class CardComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription[] = [];
 
-  constructor(private service: HttpService) {}
+  constructor(private http: HttpService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.service.getGenres(defaultLang).subscribe((data) => {
-      if (this.cardData) {
+    this.subscription.push(this.http.allGenres$.subscribe((genres) => {
+      if (this.cardData && genres.genres.length) {
+        this.genres = [];
         this.cardData.genre_ids.forEach((id) => {
-          const element = data.genres.find((item) => item.id === id);
+          const element = genres.genres.find((item) => item.id === id);
           if (element) {
             this.genres.push(element.name);
           }
         });
+        this.cdr.markForCheck();
       }
-    });
+    }));
   }
 
   ngOnDestroy() {

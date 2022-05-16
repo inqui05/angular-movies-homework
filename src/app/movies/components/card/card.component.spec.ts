@@ -1,8 +1,8 @@
-import {
-  ComponentFixture, fakeAsync, TestBed, tick,
-} from '@angular/core/testing';
+import { ChangeDetectorRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { delay, of, Subscription } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Subscription } from 'rxjs';
 import IMovie from 'src/app/shared/models/movies.model';
 import HttpService from 'src/app/shared/services/http.service';
 import MoviesModule from '../../movies.module';
@@ -17,7 +17,7 @@ describe('CardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CardComponent],
-      imports: [MoviesModule],
+      imports: [MoviesModule, RouterTestingModule],
     }).compileComponents();
     fixture = TestBed.createComponent(CardComponent);
     service = TestBed.inject(HttpService);
@@ -36,7 +36,7 @@ describe('CardComponent', () => {
     cardInfo.title = title;
     component.cardData = cardInfo;
 
-    fixture.detectChanges();
+    fixture.componentRef.injector.get(ChangeDetectorRef).detectChanges();
 
     const titleElement = fixture.debugElement.query(By.css('.title'));
     expect((titleElement.nativeElement as HTMLElement).textContent).toContain(title);
@@ -44,14 +44,14 @@ describe('CardComponent', () => {
 
   it('should unsubscribe', () => {
     component.subscription = [new Subscription(), new Subscription()];
-    component.subscription.forEach((subscripton) => {
-      const unsubscriptionSpy = spyOn(subscripton, 'unsubscribe');
+    component.subscription.forEach((subscription) => {
+      const unsubscriptionSpy = spyOn(subscription, 'unsubscribe');
       component.ngOnDestroy();
       expect(unsubscriptionSpy).toHaveBeenCalled();
     });
   });
 
-  it('should find movie\'s genres', fakeAsync(() => {
+  it('should find movie\'s genres', () => {
     const result = ['Drama', 'Action'];
     const fakeGenres = {
       genres: [
@@ -66,12 +66,11 @@ describe('CardComponent', () => {
 
     fixture.detectChanges();
 
-    spyOn(service, 'getGenres').and.callFake(() => of(fakeGenres).pipe(delay(100)));
+    service.allGenres$.next(fakeGenres);
     component.ngOnInit();
-    tick(100);
 
     expect(component.genres.length).toBe(2);
     expect(component.genres).toContain(result[1]);
     expect(component.genres).toContain(result[2]);
-  }));
+  });
 });

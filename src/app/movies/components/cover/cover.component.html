@@ -1,5 +1,5 @@
 <div class="cover" *ngIf="cardData">
-  <div class="image-wrapper" *ngIf="cardData.poster_path else cover"><img src='https://image.tmdb.org/t/p/w300/{{cardData.poster_path}}' alt="movie's cover" class="image"/></div>
+  <div class="image-wrapper" *ngIf="cardData.poster_path else cover"><img [src]='"https://image.tmdb.org/t/p/w300/"+ cardData.poster_path' alt="movie's cover" class="image"/></div>
   <div class="rating" [appViewerRating]="cardData.vote_average" *ngIf="cardData">{{cardData.vote_average | number: '1.1-1'}}</div>
 </div>
 

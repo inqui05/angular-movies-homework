@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, EventEmitter, Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-category-switcher',
   templateUrl: './category-switcher.component.html',
   styleUrls: ['./category-switcher.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CategorySwitcherComponent {
   categoryControl = new FormControl();

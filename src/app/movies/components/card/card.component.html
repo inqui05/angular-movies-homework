@@ -1,4 +1,4 @@
-<a href="#" class="card" *ngIf="cardData">
+<a [routerLink]="['/movie/', cardData.id]" class="card" *ngIf="cardData">
   <div class="card-wrapper">
     <app-cover [cardData]="cardData"></app-cover>
   </div>

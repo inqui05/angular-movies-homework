@@ -6,8 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import MaterialModule from './material/material.module';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [CommonModule, MaterialModule, HttpClientModule, BrowserAnimationsModule],
   exports: [MaterialModule, HttpClientModule],
 })

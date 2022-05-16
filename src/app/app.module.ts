@@ -8,6 +8,7 @@ import AppComponent from './app.component';
 import CoreModule from './core/core.module';
 import MoviesModule from './movies/movies.module';
 import TranslocoRootModule from './transloco-root.module';
+import { INTERCEPTORS_PROVIDERS } from './shared/vars/vars';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,7 @@ import TranslocoRootModule from './transloco-root.module';
     HttpClientModule,
     TranslocoRootModule,
   ],
-  providers: [],
+  providers: [INTERCEPTORS_PROVIDERS()],
   bootstrap: [AppComponent],
 })
 export default class AppModule {}

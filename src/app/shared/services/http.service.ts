@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 /* eslint-disable */
 import { environment } from '../../../environments/environment';
 /* eslint-enable */
@@ -24,6 +24,8 @@ const MAX_COUNT_OF_PHOTO_ON_PAGE = 5;
   providedIn: 'root',
 })
 export default class HttpService {
+  public allGenres$: BehaviorSubject<IGenres> = new BehaviorSubject<IGenres>({ genres: [] });
+
   private URL = API_URL();
 
   constructor(private http: HttpClient) { }
@@ -61,7 +63,9 @@ export default class HttpService {
     return this.http.get<IPersonImages>(`${this.URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`).pipe(
       map((data: IPersonImages) => {
         const newData = { ...data };
-        newData.profiles = data.profiles.slice(0, MAX_COUNT_OF_PHOTO_ON_PAGE);
+        if (newData.profiles && newData.profiles.length !== 0) {
+          newData.profiles = data.profiles.slice(0, MAX_COUNT_OF_PHOTO_ON_PAGE);
+        }
         return newData;
       }),
     );
@@ -80,10 +84,10 @@ export default class HttpService {
       }),
       map((data: IPersonMovies) => {
         const changedData = { ...data };
-        if (Object.keys(changedData).length !== 0 && Object.keys(changedData.cast).length !== 0) {
+        if (Object.keys(changedData).length !== 0 && changedData.cast.length !== 0) {
           changedData.cast = data.cast.filter((element) => element.genre_ids.length > 1);
         }
-        if (Object.keys(changedData.cast).length !== 0) {
+        if (changedData.cast && changedData.cast.length !== 0) {
           changedData.cast = changedData.cast.slice(0, MAX_COUNT_OF_MOVIES_ON_PAGE);
         }
         return changedData;

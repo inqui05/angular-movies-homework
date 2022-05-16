@@ -235,7 +235,7 @@ describe('HttpService', () => {
     const data: IPersonImages = {} as any;
 
     service.getPersonImages(id).subscribe((response) => {
-      expect(response).toBe(data);
+      expect(response).toEqual(data);
     });
 
     const req = httpTestingController.expectOne(`${URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`);
@@ -257,6 +257,30 @@ describe('HttpService', () => {
     const req = httpTestingController.expectOne(`${URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`);
 
     req.flush(msg, { status: 404, statusText: 'Not Found' });
+  });
+  // do it
+  it('should left five photo', () => {
+    const MAX_COUNT_OF_PHOTO_ON_PAGE = 5;
+    const data: IPersonImages = {} as any;
+    data.profiles = [
+      {} as any,
+      {} as any,
+      {} as any,
+      {} as any,
+      {} as any,
+      {} as any,
+      {} as any,
+    ];
+
+    service.getPersonImages(id).subscribe((response) => {
+      expect(response.profiles.length).toEqual(MAX_COUNT_OF_PHOTO_ON_PAGE);
+    });
+
+    const req = httpTestingController.expectOne(`${URL}person/${id}/images?api_key=${environment.MOVIESDBKEY}`);
+
+    expect(req.request.method).toBe('GET');
+
+    req.flush(data);
   });
 
   it('should return expected movies where person acted called once', () => {

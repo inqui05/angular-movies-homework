@@ -1,12 +1,14 @@
 $white: #fff;
+$dark-grey: #333;
 
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100vw;
   height: 70px;
-  background-color: #333;
+  background-color: $dark-grey;
 }
 
 .header-wrapper {
@@ -22,12 +24,21 @@ $white: #fff;
   text-decoration: none;
   font-size: 1.75rem;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .switch {
   color: $white;
   font-size: 1rem;
   text-transform: uppercase;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: $dark-grey;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #e4e8eb;
 }
 
 @media screen and (min-width: 1240px) and (max-width: 1620px) {

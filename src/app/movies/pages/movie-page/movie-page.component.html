@@ -26,7 +26,7 @@
             <div class="genre" *ngFor="let genre of info.genres">{{ genre.name }}</div>
           </div>
         </div>
-        <div class="cast">
+        <div class="cast" *ngIf="movieActors$ | async as actors">
           <div class="control">
             <h2 class="cast-title" *transloco="let phrase; read: 'movie'">{{ phrase("cast") }}</h2>
             <button class="show control-button" *ngIf="!isAllList" (click)="showAndHideAllCast()">
@@ -36,8 +36,8 @@
               {{ "movie.hide" | transloco }}
             </button>
           </div>
-          <div class="actors" [ngClass]="{ all: isAllList }" *ngIf="movieActors$ | async as actors">
-            <a href="#" class="actor" *ngFor="let actor of actors.cast">
+          <div class="actors" [ngClass]="{ all: isAllList }">
+            <a [routerLink]="['/person/', actor.id]" class="actor" *ngFor="let actor of actors.cast">
               <div class="photo-wrapper">
                 <app-photo [photo]="actor.profile_path"></app-photo>
               </div>
@@ -46,9 +46,9 @@
             </a>
           </div>
         </div>
-        <div class="images">
+        <div class="images" *ngIf="movieImages$ | async as imageBandle">
           <h2 class="images-title" *transloco="let phrase; read: 'movie'">{{ phrase("images") }}</h2>
-          <div class="images-async" *ngIf="movieImages$ | async as imageBandle">
+          <div class="images-async">
             <div class="images-wrapper" *ngIf="imageBandle | removeImages as images">
               <div class="image" *ngFor="let image of images.backdrops">
                 <div class="without">
@@ -64,9 +64,9 @@
         </div>
       </div>
     </section>
-    <section class="recommendation">
+    <section class="recommendation" *ngIf="movieRecommenadions$ | async as recommendations">
       <h2 class="cast-title" *transloco="let phrase; read: 'movie'">{{ phrase("recommendations") }}</h2>
-      <div class="recommendation-wrapper" *ngIf="movieRecommenadions$ | async as recommendations">
+      <div class="recommendation-wrapper">
         <app-card class="card" *ngFor="let movie of recommendations.results" [cardData]="movie"></app-card>
       </div>
     </section>

@@ -1,10 +1,8 @@
 import { ChangeDetectorRef } from '@angular/core';
-import {
-  ComponentFixture, fakeAsync, TestBed, tick,
-} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { delay, of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import IMovie from 'src/app/shared/models/movies.model';
 import HttpService from 'src/app/shared/services/http.service';
 import MoviesModule from '../../movies.module';
@@ -53,7 +51,7 @@ describe('CardComponent', () => {
     });
   });
 
-  it('should find movie\'s genres', fakeAsync(() => {
+  it('should find movie\'s genres', () => {
     const result = ['Drama', 'Action'];
     const fakeGenres = {
       genres: [
@@ -68,12 +66,11 @@ describe('CardComponent', () => {
 
     fixture.detectChanges();
 
-    spyOn(service, 'getGenres').and.callFake(() => of(fakeGenres).pipe(delay(100)));
+    service.allGenres$.next(fakeGenres);
     component.ngOnInit();
-    tick(100);
 
     expect(component.genres.length).toBe(2);
     expect(component.genres).toContain(result[1]);
     expect(component.genres).toContain(result[2]);
-  }));
+  });
 });

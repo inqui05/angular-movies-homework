@@ -2,7 +2,10 @@ import {
   ChangeDetectionStrategy, Component, OnDestroy, OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, Subscription } from 'rxjs';
+import {
+  combineLatest,
+  map, Observable, Subscription,
+} from 'rxjs';
 import { IMoviesActors } from 'src/app/shared/models/movies-actors.model';
 import { IMoviesImages } from 'src/app/shared/models/movies-images.model';
 import { IMoviesInfo } from 'src/app/shared/models/movies-info.model';
@@ -12,6 +15,15 @@ import LanguageService from 'src/app/shared/services/language.service';
 
 const MAX_COUNT_OF_MOVIES_ON_PAGE = 5;
 
+const LANGUAGE_BY_DEFAULT = 'en';
+
+const ID_BY_DEFAULT = 1;
+
+interface IParams {
+  lang: string,
+  id: number,
+}
+
 @Component({
   selector: 'app-movie-page',
   templateUrl: './movie-page.component.html',
@@ -19,6 +31,11 @@ const MAX_COUNT_OF_MOVIES_ON_PAGE = 5;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class MoviePageComponent implements OnInit, OnDestroy {
+  private params: IParams = {
+    lang: LANGUAGE_BY_DEFAULT,
+    id: ID_BY_DEFAULT,
+  };
+
   public isAllList = false;
 
   public movieInfo$: Observable<IMoviesInfo> = new Observable<IMoviesInfo>();
@@ -34,20 +51,25 @@ export default class MoviePageComponent implements OnInit, OnDestroy {
   constructor(private http: HttpService, private langService: LanguageService, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription.push(this.router.params.subscribe((params) => {
-      this.subscription.push(this.langService.$language.subscribe((lang) => {
-        this.movieInfo$ = this.http.getMoviesInfo(params['id'], lang);
-        this.movieActors$ = this.http.getMoviesActors(params['id'], lang);
-        this.movieImages$ = this.http.getMoviesImages(params['id']);
-        this.movieRecommenadions$ = this.http.getMoviesRecommendations(params['id'], lang).pipe(
+    this.subscription.push(
+      combineLatest(
+        {
+          id: this.router.params,
+          lang: this.langService.$language,
+        },
+      ).subscribe((results) => {
+        this.movieInfo$ = this.http.getMoviesInfo(results.id['id'], results.lang);
+        this.movieActors$ = this.http.getMoviesActors(results.id['id'], results.lang);
+        this.movieImages$ = this.http.getMoviesImages(results.id['id']);
+        this.movieRecommenadions$ = this.http.getMoviesRecommendations(results.id['id'], results.lang).pipe(
           map((data: IMoviesRecommendations) => {
             const newData = { ...data };
             newData.results = data.results.slice(0, MAX_COUNT_OF_MOVIES_ON_PAGE);
             return newData;
           }),
         );
-      }));
-    }));
+      }),
+    );
   }
 
   public showAndHideAllCast(): void {

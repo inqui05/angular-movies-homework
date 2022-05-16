@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 /* eslint-disable */
 import { environment } from '../../../environments/environment';
 /* eslint-enable */
@@ -24,6 +24,8 @@ const MAX_COUNT_OF_PHOTO_ON_PAGE = 5;
   providedIn: 'root',
 })
 export default class HttpService {
+  public allGenres$: BehaviorSubject<IGenres> = new BehaviorSubject<IGenres>({ genres: [] });
+
   private URL = API_URL();
 
   constructor(private http: HttpClient) { }

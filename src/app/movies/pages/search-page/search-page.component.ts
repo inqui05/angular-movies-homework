@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import IData from 'src/app/shared/models/data-for-response.model';
 import { ISearchResponse } from 'src/app/shared/models/search-response.model';
 import HttpService from 'src/app/shared/services/http.service';
@@ -34,13 +34,18 @@ export default class SearchPageComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.router.params.subscribe((params) => {
-      this.dataForRequest.category = params['id'];
-      this.subscriptions.push(this.langService.$language.subscribe((lang) => {
-        this.dataForRequest.language = lang;
+    this.subscriptions.push(
+      combineLatest(
+        {
+          id: this.router.params,
+          lang: this.langService.$language,
+        },
+      ).subscribe((results) => {
+        this.dataForRequest.category = results.id['id'];
+        this.dataForRequest.language = results.lang;
         this.getNewData();
-      }));
-    }));
+      }),
+    );
   }
 
   public currentPage(page: string): void {

@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy, Component, OnDestroy, OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 import { IPersonImages } from 'src/app/shared/models/person-images.modes';
 import { IPersonMovies } from 'src/app/shared/models/person-movies.model';
 import { IPerson } from 'src/app/shared/models/person.model';
@@ -27,13 +27,18 @@ export default class ActorPageComponent implements OnInit, OnDestroy {
   constructor(private http: HttpService, private langService: LanguageService, private router: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription.push(this.router.params.subscribe((params) => {
-      this.subscription.push(this.langService.$language.subscribe((lang) => {
-        this.actorInfo$ = this.http.getPersonInfo(params['id'], lang);
-        this.actorImages$ = this.http.getPersonImages(params['id']);
-        this.actorMovies$ = this.http.getPersonMovies(params['id'], lang);
-      }));
-    }));
+    this.subscription.push(
+      combineLatest(
+        {
+          id: this.router.params,
+          lang: this.langService.$language,
+        },
+      ).subscribe((results) => {
+        this.actorInfo$ = this.http.getPersonInfo(results.id['id'], results.lang);
+        this.actorImages$ = this.http.getPersonImages(results.id['id']);
+        this.actorMovies$ = this.http.getPersonMovies(results.id['id'], results.lang);
+      }),
+    );
   }
 
   ngOnDestroy() {
